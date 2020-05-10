@@ -1,0 +1,70 @@
+/*  CONSOLE  */
+#console-wrapper {
+  width: 35%;
+  border: 1px white;
+  font-family: Menlo, Monaco, source-code-pro, Ubuntu Mono, DejaVu sans mono,
+    Consolas, monospace;
+  /*   border-radius: 5px;
+  border: 1px solid #ffffff; */
+}
+
+#console-title {
+  text-transform: uppercase;
+  display: flex;
+  font-size: 12px;
+  font-weight: 700;
+  padding-left: 10px;
+  height: 40px;
+  font-family: -apple-system, BlinkMacSystemFont, roboto, Segoe UI, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+
+#console-text {
+  display: inline-flex;
+  align-items: center;
+}
+
+#console-scroll {
+  height: calc(100% - 40px);
+  overflow: auto;
+}
+
+#console {
+  width: 100%;
+  font-size: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.console-object-value {
+  display: inline-block;
+  margin-left: 10px;
+}
+.log-li {
+  border-bottom: 1px solid #2c2f34;
+  padding: 7px 12px;
+  white-space: pre;
+}
+
+/* LOG END */
+
+/* TEXT */
+
+.log-variable {
+  color: #cfd0d1;
+}
+
+.log-string {
+  color: #f5eea2;
+}
+
+.log-number {
+  color: #ed6e55;
+}
+
+.log-boolean {
+  color: #7561ff;
+}
+
+/* TEXT END */
