@@ -12,6 +12,11 @@ Map.prototype.computeIfAbsent = function(key, value) {
 let rooms = new Map();
 let users = {};
 
+app.get("/api/room/:roomId", (req, res) => {
+  console.log(req.params);
+  res.send({ status: "ok" });
+});
+
 io.on("connection", socket => {
   socket.on("join_room", ({ room, name }) => {
     socket.join(room, () => {

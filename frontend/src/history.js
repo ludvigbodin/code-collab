@@ -1,3 +1,3 @@
 import { createBrowserHistory } from "history";
 
-export default createBrowserHistory({ basename: "/origo" });
+export default createBrowserHistory({ basename: "/" });
