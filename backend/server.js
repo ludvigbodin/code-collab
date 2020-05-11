@@ -3,114 +3,47 @@ var app = express();
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
 
-const port = 5000;
+var connectoToDb = require("./repository/database");
+var initilizeSocket = require("./socket");
 
-Map.prototype.computeIfAbsent = function(key, value) {
-  return this.get(key) ? this.get(key) : value;
-};
+var { createRoom, getRoomByUUID } = require("./repository/roomRepository");
 
-let rooms = new Map();
-let users = {};
+app.use(express.json());
 
-app.get("/api/room/:roomId", (req, res) => {
+connectoToDb();
+initilizeSocket(io);
+
+const PORT = 5000;
+
+/* app.get("/api/room/:roomId", (req, res) => {
   console.log(req.params);
   res.send({ status: "ok" });
-});
+}); */
 
-io.on("connection", socket => {
-  socket.on("join_room", ({ room, name }) => {
-    socket.join(room, () => {
-      let user = {
-        id: socket.id,
-        name: name,
-        room: room
-      };
-
-      const info = updateRoom(room, user);
-
-      io.to(user.id).emit("get_id", user.id);
-      io.in(room).emit("user_connected", info);
-    });
-  });
-
-  socket.on("typing", ({ code, room }) => {
-    socket.broadcast.to(room).emit("recieve_code", code);
-  });
-
-  socket.on("disconnect", () => {
-    let userId = socket.id;
-
-    const data = removeUser(userId);
-    if (data.user) {
-      checkIfDisconnectedUserIsMaster(data.user);
-      io.to(data.user.room).emit("user_disconnected", data);
-    }
-  });
-
-  socket.on("assign_master", data => {
-    assignNewMasterForRoom(data);
-    io.in(data.roomName).emit(
-      "new_master_assigned",
-      getRoomInfo(data.roomName)
-    );
-  });
-});
-
-http.listen(port, () => {
-  console.log("server running on PORT: " + port);
-});
-
-function updateRoom(room, user) {
-  let info = rooms.computeIfAbsent(room, { name: room, master: null });
-
-  if (info.master === null) {
-    info.master = user.id;
-  }
-  rooms.set(room, info);
-  users[user.id] = user;
-
-  return {
-    room: info.name,
-    master: info.master,
-    users: getUsersInRoom(room)
-  };
-}
-
-function getUsersInRoom(room) {
-  return Object.values(users).filter(user => user.room === room);
-}
-
-function getRoomInfo(roomName) {
-  let room = rooms.computeIfAbsent(roomName, { name: roomName, master: null });
-
-  return {
-    room: room.name,
-    master: room.master,
-    users: getUsersInRoom(room.name)
-  };
-}
-
-function removeUser(userId) {
+app.post("/api/room/create", async (req, res) => {
   const data = {
-    user: users[userId]
+    roomName: req.body.roomName
   };
-  delete users[userId];
-  if (data.user) {
-    data.users = getUsersInRoom(data.user.room);
-  }
-  return data;
-}
+  const roomUUID = await createRoom(data);
+  res.send({ roomUUID: roomUUID });
+});
 
-function checkIfDisconnectedUserIsMaster(user) {
-  const room = rooms.get(user.room);
-  if (room.master === user.id) {
-    room.master = null;
-    rooms.set(room.name, room);
-  }
-}
+app.get("/api/room/:roomUUID", async (req, res) => {
+  const UUID = req.params.roomUUID;
+  const room = await getRoomByUUID(UUID);
+  room === null ? res.sendStatus(404) : res.send(room);
+});
 
-function assignNewMasterForRoom(data) {
-  let room = rooms.get(data.roomName);
-  room.master = data.userId;
-  rooms.set(data.roomName, room);
-}
+// TEST -----------------------
+app.post("/api/room/test", (req, res) => {
+  const data = {
+    roomName: req.body.roomName
+  };
+  res.sendStatus(404);
+  //res.send({ roomUUID: "TEST" });
+});
+// -----------------------------
+
+http.listen(PORT, () => {
+  console.log("server running on PORT: " + PORT);
+});

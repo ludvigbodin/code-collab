@@ -1,4 +1,32 @@
 #topbar {
-    height: 60px;
-    border-bottom: 1px solid #2c2f34;
+  height: 60px;
+  border-bottom: 1px solid #2c2f34;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-areas: "theme-toggler-wrapper create-room-wrapper";
+}
+
+#theme-toggler-wrapper {
+  grid-area: theme-toggler-wrapper;
+}
+
+#create-room-wrapper {
+  grid-area: create-room-wrapper;
+  padding: 5px;
+  display: flex;
+}
+
+#create-room-form {
+  margin: auto 0;
+}
+
+#create-room-textfield {
+  height: 30px;
+  margin-right: 10px;
+}
+
+#create-room-btn {
+  background: #70d18c;
+  color: #fff;
+  height: 30px;
 }
