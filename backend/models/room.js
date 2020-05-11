@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
 
-const Room = new mongoose.model("Room", roomSchema);
+const roomSchema = new mongoose.Schema({
+  roomName: String,
+  master: { type: String, default: null },
+  created: { type: Date, default: Date.now },
+  isActive: { type: Boolean, default: true },
+  users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
+});
 
-module.exports = Room;
+const RoomModel = new mongoose.model("Room", roomSchema);
+
+module.exports = RoomModel;

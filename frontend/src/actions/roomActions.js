@@ -1,26 +1,40 @@
 import { Actions } from "../constants/actions";
 import { post, get } from "./restClient";
+import history from "../history";
 
 const Room = Actions.Room;
 
 export const createRoom = roomName => async dispatch => {
-  const url = "api/room/test";
+  const url = "/api/room/create";
   const data = { roomName: roomName };
 
-  const response = await post(url, data);
-  const result = await response.json();
-  document.log(result);
+  try {
+    const response = await post(url, data);
+    const result = await response.json();
+    history.push("/" + result.roomId);
+  } catch (err) {
+    alert("Something went wrong");
+  }
 };
 
-export const joinRoom = roomUUID => async dispatch => {
-  const url = `api/room/join/${roomUUID}`;
-  const response = await get(url);
-  const result = await response.json();
+export const joinRoom = roomId => async dispatch => {
+  document.log(roomId);
+  const url = `api/join/${roomId}`;
+  try {
+    const response = await get(url);
+    const result = await response.json();
+    document.log(result);
+  } catch (err) {
+    history.push("/");
+    alert("The room doesnt exist anymore");
+  }
 };
+
+// OLD
 
 export const setRoomData = room => dispatch => {
   dispatch({
-    type: Room.SET_ROOM,
+    type: Room.SET_ROOM_DATA,
     data: room
   });
 };

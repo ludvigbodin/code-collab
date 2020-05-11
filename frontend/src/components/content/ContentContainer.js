@@ -47,7 +47,7 @@ function ContentContainer(props) {
 
   function initializeSockets() {
     /* let name = prompt('whats ur name?') */
-    let name = "Ludvig " + Math.floor(Math.random() * 100);
+    let name = "John Doe " + Math.floor(Math.random() * 100);
     document.log("Name: " + name + " Room: " + props.roomId);
     emitJoinRoom(name, props.roomId);
 

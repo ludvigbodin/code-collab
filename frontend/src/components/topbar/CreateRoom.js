@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createRoom, testAction } from "../../actions/roomActions";
+import { createRoom } from "../../actions/roomActions";
 
 function CreateRoom(props) {
   const [roomName, setRoomName] = useState("");
@@ -8,7 +8,7 @@ function CreateRoom(props) {
 
   function onCreateRoom(e) {
     e.preventDefault();
-    dispatch(testAction(roomName));
+    dispatch(createRoom(roomName));
   }
 
   return (

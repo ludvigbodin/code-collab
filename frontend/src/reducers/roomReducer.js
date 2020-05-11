@@ -4,7 +4,7 @@ const initState = { users: [], room: "", master: "" };
 
 const roomReducer = (state = initState, action) => {
   switch (action.type) {
-    case Actions.Room.SET_ROOM:
+    case Actions.Room.SET_ROOM_DATA:
       return action.data;
     case Actions.Room.SET_ROOM_USERS:
       return {

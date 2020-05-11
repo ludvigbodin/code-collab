@@ -1,37 +1,44 @@
-const mongoose = require("mongoose");
-
-const roomSchema = new mongoose.Schema({
-  roomUUID: String,
-  roomName: String,
-  created: { type: Date, default: Date.now },
-  isActive: { type: Boolean, default: true }
-});
-
-const Room = new mongoose.model("Room", roomSchema);
+const RoomModel = require("../models/room");
 
 async function createRoom(data) {
-  const room = new Room({
-    roomUUID: getUUID(),
+  const room = new RoomModel({
     roomName: data.roomName
   });
 
-  const response = await room.save();
-  console.log("Created room: " + response);
-  return response.roomUUID;
+  const result = await room.save();
+  console.log("Created room with id: " + result._id);
+  return result._id;
 }
 
-async function getRoomByUUID(UUID) {
-  console.log(UUID);
-  const room = await Room.findOne({ roomUUID: UUID });
+async function getRoomById(roomId) {
+  const room = await RoomModel.findOne({ _id: roomId }).select(["-__v"]);
   return room;
 }
 
-function getUUID() {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
-    var r = (Math.random() * 16) | 0,
-      v = c == "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
+async function updateRoom(roomId, data) {
+  return await UserModel.findOneAndUpdate({ room: roomId }, data, {
+    new: true
   });
 }
 
-module.exports = { createRoom: createRoom, getRoomByUUID: getRoomByUUID };
+async function updateAndGetRoom(roomId, userId) {
+  let room = await getRoomById(roomId);
+  if (room.master === null) {
+    room = await updateRoom(roomId, { master: userId });
+  }
+  return room;
+}
+
+/* async function checkIfDisconnectedUserWasMaster(roomId, userId) {
+  const room = await getRoomById(roomId);
+  if(room.master === userId) {
+    
+  }
+} */
+
+module.exports = {
+  createRoom: createRoom,
+  getRoomById: getRoomById,
+  updateRoom: updateRoom,
+  updateAndGetRoom: updateAndGetRoom
+};

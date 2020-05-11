@@ -6,7 +6,7 @@ export const Actions = {
     SET_LANGUAGE: "SET_LANGUAGE"
   },
   Room: {
-    SET_ROOM: "SET_ROOM",
+    SET_ROOM_DATA: "SET_ROOM_DATA",
     SET_ROOM_USERS: "SET_ROOM_USERS"
   },
   User: {
