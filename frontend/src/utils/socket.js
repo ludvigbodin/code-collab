@@ -2,8 +2,8 @@ import openSocket from "socket.io-client";
 const ENDPOINT = "http://localhost:5000";
 const socket = openSocket(ENDPOINT);
 
-function emitJoinRoom(name, room) {
-  socket.emit("join_room", { room: room, name: name });
+function emitJoinRoom(name, roomId) {
+  socket.emit("join_room", { roomId: roomId, name: name });
 }
 
 function onUserConnect(callback) {
@@ -30,8 +30,8 @@ function onUserDisconnect(callback) {
   });
 }
 
-function emitTyping(text, room) {
-  socket.emit("typing", { code: text, room: room });
+function emitTyping(text, roomId) {
+  socket.emit("typing", { code: text, roomId: roomId });
 }
 
 function emitAssignMaster(data) {

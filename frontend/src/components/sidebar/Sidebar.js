@@ -9,7 +9,7 @@ function Sidebar() {
   const userId = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  const { users, room, master } = roomData;
+  const { users, master, roomId } = roomData;
 
   useEffect(initilizeHooks, []);
 
@@ -19,14 +19,14 @@ function Sidebar() {
     });
   }
 
-  function setRoom(room) {
-    dispatch(setRoomData(room));
+  function setRoom(data) {
+    dispatch(setRoomData(data));
   }
 
   function assignNewMaster(userId) {
     const data = {
       userId: userId,
-      roomName: room
+      roomId: roomId
     };
     emitAssignMaster(data);
   }

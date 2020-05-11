@@ -25,7 +25,7 @@ function ContentContainer(props) {
 
   useEffect(() => {
     if (master === userId) {
-      emitTyping(code, room.room);
+      emitTyping(code, room.roomId);
     }
   }, [code, master, userId, room]);
 
@@ -52,6 +52,7 @@ function ContentContainer(props) {
     emitJoinRoom(name, props.roomId);
 
     onUserConnect(info => {
+      document.log(info);
       setRoom(info);
     });
 

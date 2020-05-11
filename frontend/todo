@@ -1,6 +1,8 @@
 TODO LIST:
 
 1. Fixa Execute Code knapp
-2. Private Room by default
-3. Kunna Skapa Sessions och bjuda in folk
+2. Private Room by default - DONE
+3. Kunna Skapa Sessions och bjuda in folk - ongoing
 
+
+https://www.npmjs.com/package/typedi  --- Dependency Inj för express

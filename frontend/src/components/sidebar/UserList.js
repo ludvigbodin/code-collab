@@ -5,7 +5,7 @@ function UserList(props) {
   const { userId, users, master, assignNewMaster } = props;
 
   const usersWithMasterProp = users.map(user => {
-    if (user.id === master) {
+    if (user._id === master) {
       user.master = true;
     } else {
       user.master = false;

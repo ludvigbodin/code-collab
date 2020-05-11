@@ -10,7 +10,10 @@ const urlLocalhost = "mongodb://localhost/code";
 
 async function connectoToDb() {
   try {
-    const connect = await mongoose.connect(url, { useNewUrlParser: true });
+    const connect = await mongoose.connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
     console.log("Connected to MongoDB using Mongoose");
     var db = mongoose.connection;
     db.useDb("CodeTogetherDb");

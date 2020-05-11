@@ -6,7 +6,7 @@ function UserListItem(props) {
   let masterBadge = <span className="badge master">Master</span>;
   let assignMasterBadge = (
     <span
-      onClick={() => assignNewMaster(user.id)}
+      onClick={() => assignNewMaster(user._id)}
       className="badge assign-master"
     >
       Assign master

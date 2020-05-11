@@ -1,4 +1,5 @@
 const RoomModel = require("../models/room");
+const UserModel = require("../models/user");
 
 async function createRoom(data) {
   const room = new RoomModel({
@@ -29,16 +30,23 @@ async function updateAndGetRoom(roomId, userId) {
   return room;
 }
 
-/* async function checkIfDisconnectedUserWasMaster(roomId, userId) {
-  const room = await getRoomById(roomId);
-  if(room.master === userId) {
-    
+async function assignMasterForRoom(roomId, userId) {
+  return await updateRoom(roomId, { master: userId });
+}
+
+async function validateUserMaster(roomId, userId) {
+  let room = await getRoomById(roomId);
+  if (room.master === userId) {
+    let user = UserModel.findOne({ room: roomId, active: true });
+    await assignMasterForRoom(roomId, user ? user._id : null);
   }
-} */
+}
 
 module.exports = {
   createRoom: createRoom,
   getRoomById: getRoomById,
   updateRoom: updateRoom,
-  updateAndGetRoom: updateAndGetRoom
+  updateAndGetRoom: updateAndGetRoom,
+  assignMasterForRoom: assignMasterForRoom,
+  validateUserMaster: validateUserMaster
 };
