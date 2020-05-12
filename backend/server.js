@@ -4,7 +4,7 @@ let http = require("http").Server(app);
 let io = require("socket.io")(http);
 
 let connectoToDb = require("./repository/database");
-let initilizeSocket = require("./socket2");
+let initilizeSocket = require("./socket");
 
 let RoomService = require("./services/RoomService");
 let roomService = new RoomService();

@@ -29,13 +29,15 @@ h3 {
 }
 
 #content {
-  display: flex;
   height: calc(90vh - 60px);
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  grid-template-areas: "editor-wrapper console-wrapper";
 }
 
 #editor-wrapper {
+  grid-area: editor-wrapper;
   height: 100%;
-  width: 60%;
   position: relative;
 }
 

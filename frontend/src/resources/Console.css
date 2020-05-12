@@ -1,11 +1,10 @@
 /*  CONSOLE  */
 #console-wrapper {
-  width: 35%;
+  grid-area: console-wrapper;
+  width: 100%;
   border: 1px white;
   font-family: Menlo, Monaco, source-code-pro, Ubuntu Mono, DejaVu sans mono,
     Consolas, monospace;
-  /*   border-radius: 5px;
-  border: 1px solid #ffffff; */
 }
 
 #console-title {
@@ -27,6 +26,8 @@
 #console-scroll {
   height: calc(100% - 40px);
   overflow: auto;
+  width: 100%;
+  position: absolute;
 }
 
 #console {

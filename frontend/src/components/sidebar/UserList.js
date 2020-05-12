@@ -17,7 +17,6 @@ function UserList(props) {
   });
 
   const userIsMaster = userId === master;
-  document.log(userIsMaster);
 
   return (
     <div id="user-list">

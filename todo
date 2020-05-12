@@ -1,11 +1,18 @@
 TODO LIST:
 
-1. Fixa Execute Code knapp
-2. Private Room by default - DONE
-3. Kunna Skapa Sessions och bjuda in folk - ongoing
+- Fixa Execute Code knapp
+- Fixa toggle live execution
+- Fixa meddelanden (popup, typ "Rum existerar inte längre") 
 
-4. Fixa disconnect i Socket2.js
-5. Fixa assignNewMaster så att den endast returnerar Master ID, och inte ALL info
+
+
+
+DONE:
+2. Private Room by default - DONE
+3. Kunna Skapa Sessions och bjuda in folk - DONE
+
+4. Fixa disconnect i Socket2.js - DONE
+5. Fixa assignNewMaster så att den endast returnerar Master ID, och inte ALL info - DONE
 
 
 https://www.npmjs.com/package/typedi  --- Dependency Inj för express

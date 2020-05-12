@@ -1,104 +1,84 @@
-Map.prototype.computeIfAbsent = function(key, value) {
-  return this.get(key) ? this.get(key) : value;
-};
+let UserService = require("./services/UserService");
+let userService = new UserService();
 
-let rooms = new Map();
-let users = {};
+let RoomService = require("./services/RoomService");
+let roomService = new RoomService();
 
 function initilizeSocket(io) {
   io.on("connection", socket => {
-    socket.on("join_room", ({ room, name }) => {
-      socket.join(room, () => {
-        let user = {
-          id: socket.id,
-          name: name,
-          room: room
+    socket.on("join_room", ({ roomId, name }) => {
+      socket.join(roomId, async () => {
+        console.log(name + " is trying to join room " + roomId);
+        let room = await roomService.getRoomById(roomId);
+        let user = await userService.joinRoom(name, socket.id, roomId);
+
+        if (room.master === null) {
+          room = await roomService.assignUserAsMasterForRoom(roomId, user._id);
+        }
+
+        const info = {
+          master: room.master,
+          isActive: room.isActive,
+          roomId: room._id,
+          roomName: room.roomName,
+          created: room.created,
+          users: await roomService.getActiveUsersInRoomById(roomId)
         };
-
-        const info = updateRoom(room, user);
-
-        io.to(user.id).emit("get_id", user.id);
-        io.in(room).emit("user_connected", info);
+        io.to(socket.id).emit("get_id", user._id);
+        io.in(roomId).emit("user_connected", info);
       });
     });
 
-    socket.on("typing", ({ code, room }) => {
-      socket.broadcast.to(room).emit("recieve_code", code);
+    socket.on("typing", ({ code, roomId }) => {
+      socket.broadcast.to(roomId).emit("recieve_code", code);
     });
 
-    socket.on("disconnect", () => {
-      let userId = socket.id;
-
-      const data = removeUser(userId);
-      if (data.user) {
-        checkIfDisconnectedUserIsMaster(data.user);
-        io.to(data.user.room).emit("user_disconnected", data);
-      }
-    });
-
-    socket.on("assign_master", data => {
-      assignNewMasterForRoom(data);
-      io.in(data.roomName).emit(
+    socket.on("assign_master", async data => {
+      await roomService.assignUserAsMasterForRoom(data.roomId, data.userId);
+      io.in(data.roomId).emit(
         "new_master_assigned",
-        getRoomInfo(data.roomName)
+        await getRoomInfo(data.roomId)
       );
+    });
+
+    socket.on("disconnect", async () => {
+      let disconnectedUser = await userService.disconnectUserFromRoom(
+        socket.id
+      );
+      if (disconnectedUser) {
+        let roomId = disconnectedUser.room;
+        let room = await roomService.getRoomById(roomId);
+        if (disconnectedUser._id.toString() === room.master.toString()) {
+          await roomService.assignRandomUserAsMaster(roomId);
+        }
+        let data = {
+          info: await getInfoWhenUserDisconnect(roomId),
+          user: disconnectedUser
+        };
+        io.to(roomId).emit("user_disconnected", data);
+      }
     });
   });
 }
 
-function updateRoom(room, user) {
-  let info = rooms.computeIfAbsent(room, { name: room, master: null });
-
-  if (info.master === null) {
-    info.master = user.id;
-  }
-  rooms.set(room, info);
-  users[user.id] = user;
-
+async function getRoomInfo(roomId) {
+  const room = await roomService.getRoomById(roomId);
   return {
-    room: info.name,
-    master: info.master,
-    users: getUsersInRoom(room)
-  };
-}
-
-function getUsersInRoom(room) {
-  return Object.values(users).filter(user => user.room === room);
-}
-
-function getRoomInfo(roomName) {
-  let room = rooms.computeIfAbsent(roomName, { name: roomName, master: null });
-
-  return {
-    room: room.name,
     master: room.master,
-    users: getUsersInRoom(room.name)
+    isActive: room.isActive,
+    roomId: room._id,
+    roomName: room.roomName,
+    created: room.created,
+    users: await roomService.getActiveUsersInRoomById(roomId)
   };
 }
 
-function removeUser(userId) {
-  const data = {
-    user: users[userId]
+async function getInfoWhenUserDisconnect(roomId) {
+  const room = await roomService.getRoomById(roomId);
+  return {
+    master: room.master,
+    users: await roomService.getActiveUsersInRoomById(roomId)
   };
-  delete users[userId];
-  if (data.user) {
-    data.users = getUsersInRoom(data.user.room);
-  }
-  return data;
-}
-
-function checkIfDisconnectedUserIsMaster(user) {
-  const room = rooms.get(user.room);
-  if (room.master === user.id) {
-    room.master = null;
-    rooms.set(room.name, room);
-  }
-}
-
-function assignNewMasterForRoom(data) {
-  let room = rooms.get(data.roomName);
-  room.master = data.userId;
-  rooms.set(data.roomName, room);
 }
 
 module.exports = initilizeSocket;
