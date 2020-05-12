@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import UserList from "./UserList";
 import { emitAssignMaster, onNewMasterAssigned } from "../../utils/socket";
 import { setRoomData } from "../../actions/roomActions";
+import RoomConfig from "./RoomConfig";
 
 function Sidebar() {
   const roomData = useSelector(state => state.room);
@@ -34,6 +35,7 @@ function Sidebar() {
 
   return (
     <div id="sidebar">
+      <RoomConfig />
       <div id="sidebar-title-wrapper">
         <h3 id="sidebar-title"> Users </h3>
       </div>

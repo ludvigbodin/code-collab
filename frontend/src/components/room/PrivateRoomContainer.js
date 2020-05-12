@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import MonacoEditor from "../content/MonacoEditor";
-import Console from "../content/Console";
 import { getConsoleItem } from "../../utils/output";
 import PrivateRoom from "./PrivateRoom";
 import Sidebar from "../sidebar/Sidebar";
@@ -29,10 +27,10 @@ function PrivateRoomContainer() {
   }
 
   return (
-    /*     <div id="root-layout">
-      <Sidebar /> */
-    <PrivateRoom updateCode={updateCode} code={code} />
-    /*     </div> */
+    <div id="root-layout">
+      <Sidebar />
+      <PrivateRoom updateCode={updateCode} code={code} />
+    </div>
   );
 }
 

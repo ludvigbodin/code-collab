@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MonacoEditor from "../content/MonacoEditor";
 import Console from "../content/Console";
-import { setRoomData, setRoomUsers } from "../../actions/roomActions";
+import { setRoomData } from "../../actions/roomActions";
 import { setUserId } from "../../actions/userActions";
 
 import {
@@ -37,10 +37,6 @@ function PublicRoom(props) {
     dispatch(setUserId(userId));
   }
 
-  function setUsersInRoom(users) {
-    dispatch(setRoomUsers(users));
-  }
-
   useEffect(changeConsoleLog, []);
 
   useEffect(initializeSockets, [props.roomId]);
@@ -65,7 +61,6 @@ function PublicRoom(props) {
     });
 
     onUserDisconnect(data => {
-      //setUsersInRoom(data.users);
       setRoom(data.info);
       alert("User " + data.user.name + " has disconnected");
     });

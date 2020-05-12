@@ -10,8 +10,6 @@ function PublicRoomContainer(props) {
   const user = useSelector(state => state.user);
 
   useEffect(() => {
-    document.log("effect" + roomId);
-
     dispatch(joinRoom(roomId));
   }, [roomId]);
 
