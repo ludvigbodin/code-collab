@@ -14,13 +14,19 @@ function MonacoEditor(props) {
 
   const options = {
     readOnly: !canEdit,
-    minimap: { enabled: false }
+    minimap: { enabled: false },
+    smoothScrolling: true,
+    scrollbar: {
+      verticalScrollbarSize: 5,
+      horizontalScrollbarSize: 5
+    }
   };
 
   return (
     <div id="editor-wrapper">
       <div id="editor">
         <ControlledEditor
+          height="100%"
           width="100%"
           language={language}
           theme={theme}

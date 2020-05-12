@@ -29,7 +29,7 @@ h3 {
 }
 
 #content {
-  height: calc(90vh - 60px);
+  height: calc(100vh - 60px);
   display: grid;
   grid-template-columns: 60% 1fr;
   grid-template-areas: "editor-wrapper console-wrapper";
@@ -38,13 +38,10 @@ h3 {
 #editor-wrapper {
   grid-area: editor-wrapper;
   height: 100%;
-  position: relative;
+  width: 100%;
 }
 
 #editor {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  height: 100%;
+  width: 100%;
 }
