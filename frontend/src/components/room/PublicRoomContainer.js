@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../sidebar/Sidebar";
-import ContentContainer from "../content/ContentContainer";
 import { joinRoom } from "../../actions/roomActions";
+import PublicRoom from "./PublicRoom";
 
-function SessionContainer(props) {
+function PublicRoomContainer(props) {
   const roomId = props.match.params.room;
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   useEffect(() => {
     document.log("effect" + roomId);
@@ -17,9 +18,9 @@ function SessionContainer(props) {
   return (
     <div id="root-layout">
       <Sidebar />
-      <ContentContainer roomId={roomId} />
+      {user.hasJoinedRoom && <PublicRoom roomId={roomId} />}
     </div>
   );
 }
 
-export default SessionContainer;
+export default PublicRoomContainer;

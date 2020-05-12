@@ -1,5 +1,6 @@
 const RoomModel = require("../models/room");
 const UserModel = require("../models/user");
+const mongoose = require("mongoose");
 
 class RoomService {
   constructor() {}
@@ -14,7 +15,10 @@ class RoomService {
   }
 
   async getRoomById(roomId) {
-    const room = await RoomModel.findOne({ _id: roomId }).select(["-__v"]);
+    if (!mongoose.isValidObjectId(roomId)) {
+      return null;
+    }
+    const room = await RoomModel.findById(roomId).select(["-__v"]);
     return room;
   }
 
@@ -30,12 +34,26 @@ class RoomService {
   }
 
   async roomHasMaster(roomId) {
-    const room = this.getRoomById(roomId);
+    const activeUsers = await this.getActiveUsersInRoomById(roomId);
+    const room = await this.getRoomById(roomId);
+
+    let filtered = activeUsers.filter(user => user._id === room.master);
+
     return room.master === null ? false : true;
   }
 
   async assignUserAsMasterForRoom(roomId, userId) {
     return await this.updateRoom(roomId, { master: userId });
+  }
+
+  async assignRandomUserAsMaster(roomId) {
+    let user = await UserModel.findOne({
+      room: roomId,
+      active: true
+    });
+    let userId = user === null ? null : user._id;
+    console.log("Random Room Master: " + userId);
+    await this.updateRoom(roomId, { master: userId });
   }
 }
 

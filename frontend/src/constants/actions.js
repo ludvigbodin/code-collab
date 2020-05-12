@@ -10,6 +10,11 @@ export const Actions = {
     SET_ROOM_USERS: "SET_ROOM_USERS"
   },
   User: {
-    SET_USER: "SET_USER"
+    SET_USER: "SET_USER",
+    SET_USER_ID: "SET_USER_ID",
+    SET_USER_HAS_JOINED_ROOM: "SET_USER_HAS_JOINED_ROOM"
+  },
+  Execution: {
+    SET_LIVE_EXECUTION: "SET_LIVE_EXECUTION"
   }
 };

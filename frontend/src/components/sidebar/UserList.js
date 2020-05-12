@@ -10,13 +10,14 @@ function UserList(props) {
     } else {
       user.master = false;
     }
-    if (user.id === userId) {
+    if (user._id === userId) {
       user.name = "You";
     }
     return user;
   });
 
   const userIsMaster = userId === master;
+  document.log(userIsMaster);
 
   return (
     <div id="user-list">

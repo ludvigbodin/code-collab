@@ -6,10 +6,11 @@ import { setRoomData } from "../../actions/roomActions";
 
 function Sidebar() {
   const roomData = useSelector(state => state.room);
-  const userId = useSelector(state => state.user);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const { users, master, roomId } = roomData;
+  const { id } = user;
 
   useEffect(initilizeHooks, []);
 
@@ -39,7 +40,7 @@ function Sidebar() {
       <UserList
         assignNewMaster={assignNewMaster}
         master={master}
-        userId={userId}
+        userId={id}
         users={users}
       />
     </div>

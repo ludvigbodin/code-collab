@@ -1,9 +1,9 @@
 import React from "react";
-import SessionContainer from "./components/room/SessionContainer";
 import Topbar from "./components/topbar/Topbar";
 import { Router, Switch, Route } from "react-router-dom";
 import history from "./history";
 import PrivateRoomContainer from "./components/room/PrivateRoomContainer";
+import PublicRoomContainer from "./components/room/PublicRoomContainer";
 
 document.log = console.log;
 
@@ -14,7 +14,7 @@ function App() {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={PrivateRoomContainer} />
-          <Route path="/:room" component={SessionContainer} />
+          <Route path="/:room" component={PublicRoomContainer} />
         </Switch>
       </Router>
     </>

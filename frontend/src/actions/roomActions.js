@@ -1,6 +1,7 @@
 import { Actions } from "../constants/actions";
 import { post, get } from "./restClient";
 import history from "../history";
+import { setUserHasJoinedRoom } from "./userActions";
 
 const Room = Actions.Room;
 
@@ -24,9 +25,10 @@ export const joinRoom = roomId => async dispatch => {
     const response = await get(url);
     const result = await response.json();
     document.log(result);
+    dispatch(setUserHasJoinedRoom(true));
   } catch (err) {
-    history.push("/");
     alert("The room doesnt exist anymore");
+    history.push("/");
   }
 };
 

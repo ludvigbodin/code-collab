@@ -32,13 +32,6 @@ app.get("/api/join/:roomId", async (req, res) => {
 app.get("/api/test", async (req, res) => {
   const rest = await roomService.getRoomById("5eb9b2b683b3c79a35ea4cf1");
   res.send(rest);
-  //res.send({ roomUUID: "TEST" });
-});
-
-app.post("/api/create", async (req, res) => {
-  //let r = await addUserToRoom("5eb95af16948477e8408c6bc", "Ludvig B");
-  let room = await roomService.createRoom("First Service");
-  res.send(room);
 });
 // -----------------------------
 

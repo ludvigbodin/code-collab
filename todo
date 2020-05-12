@@ -4,5 +4,8 @@ TODO LIST:
 2. Private Room by default - DONE
 3. Kunna Skapa Sessions och bjuda in folk - ongoing
 
+4. Fixa disconnect i Socket2.js
+5. Fixa assignNewMaster så att den endast returnerar Master ID, och inte ALL info
+
 
 https://www.npmjs.com/package/typedi  --- Dependency Inj för express

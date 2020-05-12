@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MonacoEditor from "./MonacoEditor";
-import Console from "./Console";
+import MonacoEditor from "../content/MonacoEditor";
+import Console from "../content/Console";
 import { setRoomData, setRoomUsers } from "../../actions/roomActions";
-import { setUser } from "../../actions/userActions";
+import { setUserId } from "../../actions/userActions";
 
 import {
   emitJoinRoom,
@@ -16,25 +16,25 @@ import {
 
 import { getConsoleItem } from "../../utils/output";
 
-function ContentContainer(props) {
+function PublicRoom(props) {
   const [code, setCode] = useState("//write ur code here");
-  const userId = useSelector(state => state.user);
+  const user = useSelector(state => state.user);
   const room = useSelector(state => state.room);
   const master = room.master;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (master === userId) {
+    if (master === user.id) {
       emitTyping(code, room.roomId);
     }
-  }, [code, master, userId, room]);
+  }, [code, master, user.id, room]);
 
   function setRoom(room) {
     dispatch(setRoomData(room));
   }
 
-  function setUserToStore(user) {
-    dispatch(setUser(user));
+  function setUserIdToStore(userId) {
+    dispatch(setUserId(userId));
   }
 
   function setUsersInRoom(users) {
@@ -56,8 +56,8 @@ function ContentContainer(props) {
       setRoom(info);
     });
 
-    onGetMyUserId(id => {
-      setUserToStore(id);
+    onGetMyUserId(userId => {
+      setUserIdToStore(userId);
     });
 
     onRecieveCode(code => {
@@ -65,7 +65,8 @@ function ContentContainer(props) {
     });
 
     onUserDisconnect(data => {
-      setUsersInRoom(data.users);
+      //setUsersInRoom(data.users);
+      setRoom(data.info);
       alert("User " + data.user.name + " has disconnected");
     });
   }
@@ -88,7 +89,7 @@ function ContentContainer(props) {
     logger.appendChild(consoleItem);
   }
 
-  const userIsMaster = master === userId;
+  const userIsMaster = master === user.id;
 
   return (
     <div id="content-wrapper">
@@ -105,4 +106,4 @@ function ContentContainer(props) {
   );
 }
 
-export default ContentContainer;
+export default PublicRoom;
