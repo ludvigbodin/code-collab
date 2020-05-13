@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import MonacoEditor from "../content/MonacoEditor";
 import Console from "../content/Console";
 import { setRoomData } from "../../actions/roomActions";
@@ -22,7 +22,8 @@ function PublicRoom(props) {
   const user = useSelector(state => state.user);
   const room = useSelector(state => state.room);
   const master = room.master;
-  const dispatch = useDispatch();
+
+  const { dispatch } = props;
 
   useEffect(() => {
     if (master === user.id) {

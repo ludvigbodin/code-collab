@@ -1,58 +1,83 @@
 #sidebar {
-    grid-area: sidebar;
-    border-right: 1px solid #2c2f34;
+  grid-area: sidebar;
+  border-right: 1px solid #2c2f34;
 }
 
-#sidebar-title-wrapper {
-    display: flex;
-    height: 40px;
+#sidebar-config-title-wrapper {
+  display: flex;
+  height: 30px;
 }
 
-#sidebar-title {
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    margin-left: 10px;
+#sidebar-config-title {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#sidebar-user-list-title-wrapper {
+  display: flex;
+  height: 40px;
+}
+
+#sidebar-user-list-title {
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
 }
 
 #sidebar-item {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #sidebar-item-text {
-    height: 36px;
-    line-height: 36px;
-    padding: 0 10px;
-    font-size: 14px;
-    font-weight: normal;
-    position: relative;
-    text-decoration: none;
-    transition: all .15s;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: normal;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.15s;
 }
 
 .badge {
-    display: inline-block;
-    padding: 0 3px;
-    height: 13px;
-    border-radius: 2px;
-    line-height: 13px;
-    font-size: 9px;
-    font-weight: bold;
-    overflow: hidden;
-    position: relative;
-    bottom: -2px;
-    left: 3px;
-    text-transform: uppercase; 
+  display: inline-block;
+  padding: 0 3px;
+  height: 13px;
+  border-radius: 2px;
+  line-height: 13px;
+  font-size: 9px;
+  font-weight: bold;
+  overflow: hidden;
+  position: relative;
+  bottom: -2px;
+  left: 3px;
+  text-transform: uppercase;
 }
 
 .master {
-    background: #f3ca63;
-    color: #1a1d21;
+  background: #f3ca63;
+  color: #1a1d21;
 }
 
 .assign-master {
-    background: #aca79c;
-    color: #1a1d21;
-    cursor: pointer;
+  background: #aca79c;
+  color: #1a1d21;
+  cursor: pointer;
+}
+
+/* Config */
+#config-item-wrapper {
+  height: 30px;
+  padding: 5px 10px;
+  display: flex;
+}
+
+#toggle-text {
+  align-items: center;
+  display: flex;
+  font-weight: normal;
+  margin-left: 10px;
 }

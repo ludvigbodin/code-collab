@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function Console(props) {
+  const liveExecution = useSelector(state => state.liveExecution);
+
   useEffect(() => {
-    executeCode(props.code);
-  }, [props.code]);
+    if (liveExecution) {
+      executeCode(props.code);
+    }
+  }, [props.code, liveExecution]);
 
   function executeCode(code) {
     let logger = document.getElementById("console");

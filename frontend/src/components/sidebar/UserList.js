@@ -19,16 +19,21 @@ function UserList(props) {
   const userIsMaster = userId === master;
 
   return (
-    <div id="user-list">
-      {usersWithMasterProp.map((user, index) => (
-        <UserListItem
-          key={index}
-          user={user}
-          userIsMaster={userIsMaster}
-          assignNewMaster={assignNewMaster}
-        />
-      ))}
-    </div>
+    <>
+      <div id="sidebar-user-list-title-wrapper">
+        <h3 id="sidebar-user-list-title"> Users </h3>
+      </div>
+      <div id="user-list">
+        {usersWithMasterProp.map((user, index) => (
+          <UserListItem
+            key={index}
+            user={user}
+            userIsMaster={userIsMaster}
+            assignNewMaster={assignNewMaster}
+          />
+        ))}
+      </div>
+    </>
   );
 }
 

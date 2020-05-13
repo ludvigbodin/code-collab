@@ -11,12 +11,12 @@ function PublicRoomContainer(props) {
 
   useEffect(() => {
     dispatch(joinRoom(roomId));
-  }, [roomId]);
+  }, [roomId, dispatch]);
 
   return (
     <div id="root-layout">
       <Sidebar />
-      {user.hasJoinedRoom && <PublicRoom roomId={roomId} />}
+      {user.hasJoinedRoom && <PublicRoom dispatch={dispatch} roomId={roomId} />}
     </div>
   );
 }

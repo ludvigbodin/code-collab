@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { toggleLiveExecution } from "../../actions/executionActions";
+import ToggleButton from "react-toggle-button";
 
 function ToggleLiveExecution(props) {
   const { dispatch } = props;
@@ -11,11 +12,9 @@ function ToggleLiveExecution(props) {
   }
 
   return (
-    <div id="toggle-live-execution-wrappaer">
-      <label className="switch">
-        <input type="checkbox" checked={liveExecution} onChange={toggle} />
-        <span className="slider round"></span>
-      </label>
+    <div id="config-item-wrapper">
+      <ToggleButton value={liveExecution} onToggle={toggle} />
+      <h3 id="toggle-text"> Live execute </h3>
     </div>
   );
 }

@@ -35,10 +35,7 @@ function Sidebar() {
 
   return (
     <div id="sidebar">
-      <RoomConfig />
-      <div id="sidebar-title-wrapper">
-        <h3 id="sidebar-title"> Users </h3>
-      </div>
+      <RoomConfig dispatch={dispatch} />
       <UserList
         assignNewMaster={assignNewMaster}
         master={master}
