@@ -1,32 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getConsoleItem } from "../../utils/output";
+//import { getConsoleItem } from "../../utils/output";
 import PrivateRoom from "./PrivateRoom";
 import Sidebar from "../sidebar/Sidebar";
 import { updateCodeInStore } from "../../actions/codeActions";
+import { overrideConsole } from "../../utils/output";
 
 function PrivateRoomContainer() {
   const code = useSelector(state => state.code);
   const dispatch = useDispatch();
 
-  useEffect(changeConsoleLog, []);
+  useEffect(overrideConsole, []);
 
   function updateCode(code) {
     dispatch(updateCodeInStore(code));
-  }
-
-  function changeConsoleLog() {
-    console.log = function() {
-      for (var i = 0; i < arguments.length; i++) {
-        let consoleItem = getConsoleItem(arguments[i]);
-        outputToConsole(consoleItem);
-      }
-    };
-  }
-
-  function outputToConsole(consoleItem) {
-    let logger = document.getElementById("console");
-    logger.appendChild(consoleItem);
   }
 
   return (

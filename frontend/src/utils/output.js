@@ -1,7 +1,20 @@
-// TODO fixa DEEP grejen
-// 1. Fixa deep så att den funkar på allt
-// 2, Fixa så att array skriver ut snyggt.
-// 3. fixa så att getArrayListItem kan hantera object och array.
+export const overrideConsole = () => {
+  changeConsoleLog();
+};
+
+function changeConsoleLog() {
+  console.log = function() {
+    for (var i = 0; i < arguments.length; i++) {
+      let consoleItem = getConsoleItem(arguments[i]);
+      outputToConsole(consoleItem);
+    }
+  };
+}
+
+function outputToConsole(consoleItem) {
+  let logger = document.getElementById("console");
+  logger.appendChild(consoleItem);
+}
 
 function getConsoleItem(value) {
   let consoleItem = document.createElement("li");
@@ -131,4 +144,4 @@ function getSpanItemInnerHTML(text) {
   return span;
 }
 
-export { getConsoleItem };
+//export { getConsoleItem };

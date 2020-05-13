@@ -1,4 +1,4 @@
-const publicIp = require("public-ip");
+//const publicIp = require("public-ip");
 
 export const get = async url => {
   const encodedUrl = encodeURI(url);

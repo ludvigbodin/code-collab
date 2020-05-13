@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import MonacoEditor from "../content/MonacoEditor";
 import Console from "../content/Console";
@@ -14,7 +14,6 @@ import {
   onJoinRoom
 } from "../../utils/socket";
 
-import { getConsoleItem } from "../../utils/output";
 import { notifyWarning, notifyInfo } from "../../utils/toaster";
 
 function PublicRoom(props) {
@@ -37,8 +36,6 @@ function PublicRoom(props) {
   function setUserIdToStore(userId) {
     dispatch(setUserId(userId));
   }
-
-  useEffect(changeConsoleLog, []);
 
   useEffect(initializeSockets, [props.roomId]);
 
@@ -68,20 +65,6 @@ function PublicRoom(props) {
       setRoom(data.info);
       notifyWarning(data.user.name + " disconnected");
     });
-  }
-
-  function changeConsoleLog() {
-    console.log = function() {
-      for (var i = 0; i < arguments.length; i++) {
-        let consoleItem = getConsoleItem(arguments[i]);
-        outputToConsole(consoleItem);
-      }
-    };
-  }
-
-  function outputToConsole(consoleItem) {
-    let logger = document.getElementById("console");
-    logger.appendChild(consoleItem);
   }
 
   const userIsMaster = master === user.id;

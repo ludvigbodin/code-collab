@@ -4,12 +4,15 @@ import Sidebar from "../sidebar/Sidebar";
 import { joinRoom } from "../../actions/roomActions";
 import PublicRoom from "./PublicRoom";
 import { updateCodeInStore } from "../../actions/codeActions";
+import { overrideConsole } from "../../utils/output";
 
 function PublicRoomContainer(props) {
   const roomId = props.match.params.room;
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const code = useSelector(state => state.code);
+
+  useEffect(overrideConsole, []);
 
   useEffect(() => {
     dispatch(joinRoom(roomId));
