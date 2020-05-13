@@ -1,13 +1,16 @@
-export const get = url => {
+const publicIp = require("public-ip");
+
+export const get = async url => {
   const encodedUrl = encodeURI(url);
 
-  return fetch(`${encodedUrl}`, {
+  const response = await fetch(`${encodedUrl}`, {
     method: "get"
   });
+  return resolveResponse(response);
 };
 
-export const post = (url, body) => {
-  return fetch(url, {
+export const post = async (url, body) => {
+  const response = await fetch(url, {
     method: "post",
     headers: {
       Accept: "application/json",
@@ -15,4 +18,14 @@ export const post = (url, body) => {
     },
     body: JSON.stringify(body)
   });
+  return resolveResponse(response);
+};
+
+const resolveResponse = async response => {
+  const json = await response.json();
+  if (response.status === 200) {
+    return Promise.resolve(json);
+  } else {
+    return Promise.reject(json);
+  }
 };

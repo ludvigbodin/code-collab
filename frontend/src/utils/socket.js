@@ -6,15 +6,15 @@ function emitJoinRoom(name, roomId) {
   socket.emit("join_room", { roomId: roomId, name: name });
 }
 
-function onUserConnect(callback) {
-  socket.on("user_connected", info => {
-    callback(info);
+function onJoinRoom(callback) {
+  socket.on("join_room", data => {
+    callback(data);
   });
 }
 
-function onGetMyUserId(callback) {
-  socket.on("get_id", id => {
-    callback(id);
+function onUserConnect(callback) {
+  socket.on("user_connected", info => {
+    callback(info);
   });
 }
 
@@ -46,8 +46,8 @@ function onNewMasterAssigned(callback) {
 
 export {
   emitJoinRoom,
+  onJoinRoom,
   onUserConnect,
-  onGetMyUserId,
   onRecieveCode,
   onUserDisconnect,
   emitTyping,

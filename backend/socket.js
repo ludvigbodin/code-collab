@@ -16,16 +16,30 @@ function initilizeSocket(io) {
           room = await roomService.assignUserAsMasterForRoom(roomId, user._id);
         }
 
-        const info = {
+        const usersInRoom = await roomService.getActiveUsersInRoomById(roomId);
+        const roomInfo = {
           master: room.master,
           isActive: room.isActive,
           roomId: room._id,
           roomName: room.roomName,
           created: room.created,
-          users: await roomService.getActiveUsersInRoomById(roomId)
+          users: usersInRoom
         };
-        io.to(socket.id).emit("get_id", user._id);
-        io.in(roomId).emit("user_connected", info);
+
+        const infoToJoinedUser = {
+          roomInfo: roomInfo,
+          userId: user._id
+        };
+
+        const infoToOtherParticipants = {
+          roomInfo: roomInfo,
+          user: user.name
+        };
+
+        io.to(socket.id).emit("join_room", infoToJoinedUser);
+        socket.broadcast
+          .to(roomId)
+          .emit("user_connected", infoToOtherParticipants);
       });
     });
 

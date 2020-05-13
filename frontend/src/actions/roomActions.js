@@ -2,6 +2,7 @@ import { Actions } from "../constants/actions";
 import { post, get } from "./restClient";
 import history from "../history";
 import { setUserHasJoinedRoom } from "./userActions";
+import { notifyError, notifyInfo } from "../utils/toaster";
 
 const Room = Actions.Room;
 
@@ -10,11 +11,10 @@ export const createRoom = roomName => async dispatch => {
   const data = { roomName: roomName };
 
   try {
-    const response = await post(url, data);
-    const result = await response.json();
-    history.push("/" + result.roomId);
+    const json = await post(url, data);
+    history.push("/" + json.roomId);
   } catch (err) {
-    alert("Something went wrong");
+    notifyError(err.message);
   }
 };
 
@@ -22,13 +22,12 @@ export const joinRoom = roomId => async dispatch => {
   document.log(roomId);
   const url = `api/join/${roomId}`;
   try {
-    const response = await get(url);
-    const result = await response.json();
-    document.log(result);
+    const json = await get(url);
     dispatch(setUserHasJoinedRoom(true));
+    notifyInfo("You have joined room " + json.roomName);
   } catch (err) {
-    alert("The room doesnt exist anymore");
     history.push("/");
+    notifyError(err.message);
   }
 };
 

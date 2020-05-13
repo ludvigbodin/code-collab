@@ -8,13 +8,14 @@ import { setUserId } from "../../actions/userActions";
 import {
   emitJoinRoom,
   onUserConnect,
-  onGetMyUserId,
   onRecieveCode,
   emitTyping,
-  onUserDisconnect
+  onUserDisconnect,
+  onJoinRoom
 } from "../../utils/socket";
 
 import { getConsoleItem } from "../../utils/output";
+import { notifyWarning, notifyInfo } from "../../utils/toaster";
 
 function PublicRoom(props) {
   const [code, setCode] = useState("//write ur code here");
@@ -48,12 +49,15 @@ function PublicRoom(props) {
     emitJoinRoom(name, props.roomId);
 
     onUserConnect(info => {
-      document.log(info);
-      setRoom(info);
+      document.log("Room Info", info.roomInfo);
+      document.log("Joined user ", info.user);
+      setRoom(info.roomInfo);
+      notifyInfo(info.user + " joined");
     });
 
-    onGetMyUserId(userId => {
-      setUserIdToStore(userId);
+    onJoinRoom(data => {
+      setRoom(data.roomInfo);
+      setUserIdToStore(data.userId);
     });
 
     onRecieveCode(code => {
@@ -62,7 +66,7 @@ function PublicRoom(props) {
 
     onUserDisconnect(data => {
       setRoom(data.info);
-      alert("User " + data.user.name + " has disconnected");
+      notifyWarning(data.user.name + " disconnected");
     });
   }
 

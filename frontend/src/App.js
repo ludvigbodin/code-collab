@@ -4,6 +4,7 @@ import { Router, Switch, Route } from "react-router-dom";
 import history from "./history";
 import PrivateRoomContainer from "./components/room/PrivateRoomContainer";
 import PublicRoomContainer from "./components/room/PublicRoomContainer";
+import { ToastContainer } from "react-toastify";
 
 document.log = console.log;
 
@@ -17,6 +18,17 @@ function App() {
           <Route path="/:room" component={PublicRoomContainer} />
         </Switch>
       </Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

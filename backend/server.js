@@ -1,22 +1,31 @@
-let express = require("express");
-let app = express();
-let http = require("http").Server(app);
-let io = require("socket.io")(http);
+const express = require("express");
+const app = express();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+const morgan = require("morgan");
+const config = require("config");
 
-let connectoToDb = require("./repository/database");
-let initilizeSocket = require("./socket");
+const initilizeSocket = require("./socket");
 
-let RoomService = require("./services/RoomService");
-let roomService = new RoomService();
+const RoomService = require("./services/RoomService");
+const roomService = new RoomService();
+
+const Database = require("./db/database");
+const db = new Database();
 
 app.use(express.json());
+app.use(morgan("tiny"));
 
-connectoToDb();
+db.connect("user", "password");
 initilizeSocket(io);
 
 const PORT = 5000;
 
 app.post("/api/room/create", async (req, res) => {
+  if (!req.body.roomName || req.body.roomName.length === 0) {
+    res.status(400).send({ message: "Name is required" });
+    return;
+  }
   const roomName = req.body.roomName;
   const roomId = await roomService.createRoom(roomName);
   res.send({ roomId: roomId });
@@ -25,7 +34,13 @@ app.post("/api/room/create", async (req, res) => {
 app.get("/api/join/:roomId", async (req, res) => {
   const roomId = req.params.roomId;
   const room = await roomService.getRoomById(roomId);
-  room === null ? res.sendStatus(404) : res.send(room);
+  room === null
+    ? res.status(400).send({ message: "Room doesn't exist" })
+    : res.send(room);
+});
+
+app.get("/api/status", (req, res) => {
+  res.send({ status: "running" });
 });
 
 // TEST -----------------------

@@ -5,6 +5,7 @@ import "./App.css";
 import "./resources/Topbar.css";
 import "./resources/Sidebar.css";
 import "./resources/Console.css";
+import "react-toastify/dist/ReactToastify.css";
 import { applyMiddleware, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers/rootReducer";

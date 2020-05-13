@@ -2,18 +2,25 @@
   height: 60px;
   border-bottom: 1px solid #2c2f34;
   display: grid;
-  grid-template-columns: 100px 100px 1fr 100px;
+  grid-template-columns: 200px 100px 1fr 100px;
   grid-template-areas: "logo-wrapper theme-toggler-wrapper create-room-wrapper toggle-live-execution-wrapper";
 }
 
 #logo-wrapper {
   grid-area: logo-wrapper;
+  overflow: hidden;
+  padding: 10px;
 }
 
 #logo-img {
   height: 100%;
-  width: 60px;
+  cursor: pointer;
 }
+
+/* #logo-img:hover {
+  -webkit-filter: brightness(0.6) contrast(3.4) hue-rotate(217deg) saturate(9.9);
+  filter: brightness(0.6) contrast(3.4) hue-rotate(217deg) saturate(9.9);
+} */
 
 #theme-toggler-wrapper {
   grid-area: theme-toggler-wrapper;
