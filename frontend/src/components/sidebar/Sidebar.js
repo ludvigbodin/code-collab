@@ -11,7 +11,7 @@ function Sidebar() {
   const dispatch = useDispatch();
 
   const { users, master, roomId } = roomData;
-  const { id } = user;
+  const { id, hasJoinedRoom } = user;
 
   useEffect(initilizeHooks, []);
 
@@ -36,12 +36,14 @@ function Sidebar() {
   return (
     <div id="sidebar">
       <RoomConfig dispatch={dispatch} />
-      <UserList
-        assignNewMaster={assignNewMaster}
-        master={master}
-        userId={id}
-        users={users}
-      />
+      {hasJoinedRoom && (
+        <UserList
+          assignNewMaster={assignNewMaster}
+          master={master}
+          userId={id}
+          users={users}
+        />
+      )}
     </div>
   );
 }
