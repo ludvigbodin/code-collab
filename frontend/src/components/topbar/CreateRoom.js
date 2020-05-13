@@ -18,6 +18,7 @@ function CreateRoom(props) {
           id="create-room-textfield"
           type="text"
           value={roomName}
+          placeholder="Enter name"
           onChange={e => setRoomName(e.target.value)}
         />
         <button id="create-room-btn" onClick={onCreateRoom}>

@@ -2,7 +2,7 @@
   height: 60px;
   border-bottom: 1px solid #2c2f34;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 210px 1fr;
   grid-template-areas: "logo-wrapper create-room-wrapper";
 }
 
@@ -22,11 +22,6 @@
   filter: brightness(0.6) contrast(3.4) hue-rotate(217deg) saturate(9.9);
 } */
 
-.theme-toggler-btn {
-  height: 30px;
-  margin: auto 0;
-}
-
 #create-room-wrapper {
   grid-area: create-room-wrapper;
   padding: 5px;
@@ -40,10 +35,21 @@
 #create-room-textfield {
   height: 30px;
   margin-right: 10px;
+  border-radius: 4px;
+  box-shadow: none;
 }
 
 #create-room-btn {
-  background: #70d18c;
+  background: #0077cc;
   color: #fff;
   height: 30px;
+  font-weight: normal;
+  border-color: #0077cc !important;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#create-room-btn:hover {
+  background: #0077cca1;
+  border-color: #0077cca1 !important;
 }

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import UserList from "./UserList";
 import { emitAssignMaster, onNewMasterAssigned } from "../../utils/socket";
 import { setRoomData } from "../../actions/roomActions";
-import RoomConfig from "./RoomConfig";
+import RoomSettings from "./RoomSettings";
 
 function Sidebar() {
   const roomData = useSelector(state => state.room);
@@ -35,7 +35,7 @@ function Sidebar() {
 
   return (
     <div id="sidebar">
-      <RoomConfig dispatch={dispatch} />
+      <RoomSettings dispatch={dispatch} />
       {hasJoinedRoom && (
         <UserList
           assignNewMaster={assignNewMaster}

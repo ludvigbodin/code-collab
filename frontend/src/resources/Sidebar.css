@@ -3,12 +3,12 @@
   border-right: 1px solid #2c2f34;
 }
 
-#sidebar-config-title-wrapper {
+#sidebar-settings-title-wrapper {
   display: flex;
   height: 30px;
 }
 
-#sidebar-config-title {
+#sidebar-settings-title {
   display: inline-flex;
   align-items: center;
   margin-left: 10px;
@@ -68,8 +68,8 @@
   cursor: pointer;
 }
 
-/* Config */
-#config-item-wrapper {
+/* Settings */
+#settings-item-wrapper {
   height: 30px;
   padding: 5px 10px;
   display: flex;

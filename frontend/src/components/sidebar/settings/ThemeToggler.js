@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "../../actions/themeActions";
+import { toggleTheme } from "../../../actions/themeActions";
 import ToggleButton from "react-toggle-button";
 
 function ThemeToggler() {
@@ -14,7 +14,7 @@ function ThemeToggler() {
   const isActive = theme === "dark";
 
   return (
-    <div id="config-item-wrapper">
+    <div id="settings-item-wrapper">
       <ToggleButton
         value={isActive}
         onToggle={toggle}
