@@ -16,5 +16,8 @@ export const Actions = {
   },
   Execution: {
     SET_LIVE_EXECUTION: "SET_LIVE_EXECUTION"
+  },
+  Code: {
+    SET_CODE: "SET_CODE"
   }
 };

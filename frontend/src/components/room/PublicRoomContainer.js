@@ -3,20 +3,33 @@ import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../sidebar/Sidebar";
 import { joinRoom } from "../../actions/roomActions";
 import PublicRoom from "./PublicRoom";
+import { updateCodeInStore } from "../../actions/codeActions";
 
 function PublicRoomContainer(props) {
   const roomId = props.match.params.room;
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
+  const code = useSelector(state => state.code);
 
   useEffect(() => {
     dispatch(joinRoom(roomId));
   }, [roomId, dispatch]);
 
+  function updateCode(code) {
+    dispatch(updateCodeInStore(code));
+  }
+
   return (
     <div id="root-layout">
       <Sidebar />
-      {user.hasJoinedRoom && <PublicRoom dispatch={dispatch} roomId={roomId} />}
+      {user.hasJoinedRoom && (
+        <PublicRoom
+          code={code}
+          updateCode={updateCode}
+          dispatch={dispatch}
+          roomId={roomId}
+        />
+      )}
     </div>
   );
 }

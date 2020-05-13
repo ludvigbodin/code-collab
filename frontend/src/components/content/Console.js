@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { executeCode } from "../../utils/execute";
 
 function Console(props) {
   const liveExecution = useSelector(state => state.liveExecution);
@@ -9,19 +10,6 @@ function Console(props) {
       executeCode(props.code);
     }
   }, [props.code, liveExecution]);
-
-  function executeCode(code) {
-    let logger = document.getElementById("console");
-    logger.innerHTML = "";
-    try {
-      let fn = new Function(code);
-      document.log("OK");
-      fn();
-    } catch (err) {
-      document.log("ERR");
-      console.log(err.name + ": " + err.message);
-    }
-  }
 
   return (
     <div id="console-wrapper">

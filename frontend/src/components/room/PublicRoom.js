@@ -18,12 +18,11 @@ import { getConsoleItem } from "../../utils/output";
 import { notifyWarning, notifyInfo } from "../../utils/toaster";
 
 function PublicRoom(props) {
-  const [code, setCode] = useState("//write ur code here");
   const user = useSelector(state => state.user);
   const room = useSelector(state => state.room);
   const master = room.master;
 
-  const { dispatch } = props;
+  const { dispatch, code, updateCode } = props;
 
   useEffect(() => {
     if (master === user.id) {
@@ -62,17 +61,13 @@ function PublicRoom(props) {
     });
 
     onRecieveCode(code => {
-      setCode(code);
+      updateCode(code);
     });
 
     onUserDisconnect(data => {
       setRoom(data.info);
       notifyWarning(data.user.name + " disconnected");
     });
-  }
-
-  function updateCode(code) {
-    setCode(code);
   }
 
   function changeConsoleLog() {

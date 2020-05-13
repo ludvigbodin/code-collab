@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getConsoleItem } from "../../utils/output";
 import PrivateRoom from "./PrivateRoom";
 import Sidebar from "../sidebar/Sidebar";
+import { updateCodeInStore } from "../../actions/codeActions";
 
 function PrivateRoomContainer() {
-  const [code, setCode] = useState("//write ur code here");
+  const code = useSelector(state => state.code);
+  const dispatch = useDispatch();
 
   useEffect(changeConsoleLog, []);
 
   function updateCode(code) {
-    setCode(code);
+    dispatch(updateCodeInStore(code));
   }
 
   function changeConsoleLog() {
