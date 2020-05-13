@@ -21,7 +21,7 @@ function CreateRoom(props) {
           placeholder="Enter name"
           onChange={e => setRoomName(e.target.value)}
         />
-        <button id="create-room-btn" onClick={onCreateRoom}>
+        <button className="blue-btn" onClick={onCreateRoom}>
           Create room
         </button>
       </form>

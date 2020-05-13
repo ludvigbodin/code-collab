@@ -81,3 +81,8 @@
   font-weight: normal;
   margin-left: 10px;
 }
+
+.execute-now-btn {
+  width: 60px !important;
+  height: 25px !important;
+}

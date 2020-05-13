@@ -39,6 +39,21 @@
   box-shadow: none;
 }
 
+.blue-btn {
+  background: #0077cc;
+  color: #fff;
+  height: 30px;
+  font-weight: normal;
+  border-color: #0077cc !important;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-room-btn:hover {
+  background: #0077cca1;
+  border-color: #0077cca1 !important;
+}
+
 #create-room-btn {
   background: #0077cc;
   color: #fff;
