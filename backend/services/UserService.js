@@ -18,6 +18,7 @@ class UserService {
   }
 
   async disconnectUserFromRoom(socketId) {
+    console.log("User Service: " + socketId);
     return this.updateUser({ socketId: socketId }, { active: false });
   }
 

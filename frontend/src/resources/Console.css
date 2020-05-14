@@ -69,3 +69,13 @@
 }
 
 /* TEXT END */
+
+.user-cursor {
+  background: red;
+  width: 2px !important;
+}
+
+.selectedRange {
+  background: #accef7 !important;
+  color: black !important;
+}

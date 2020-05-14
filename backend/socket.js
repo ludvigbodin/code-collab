@@ -43,8 +43,8 @@ function initilizeSocket(io) {
       });
     });
 
-    socket.on("typing", ({ code, roomId }) => {
-      socket.broadcast.to(roomId).emit("recieve_code", code);
+    socket.on("typing", data => {
+      socket.broadcast.to(data.roomId).emit("recieve_code", data.info);
     });
 
     socket.on("assign_master", async data => {
@@ -61,10 +61,6 @@ function initilizeSocket(io) {
       );
       if (disconnectedUser) {
         let roomId = disconnectedUser.room;
-        let room = await roomService.getRoomById(roomId);
-        if (disconnectedUser._id.toString() === room.master.toString()) {
-          await roomService.assignRandomUserAsMaster(roomId);
-        }
         let data = {
           info: await getInfoWhenUserDisconnect(roomId),
           user: disconnectedUser

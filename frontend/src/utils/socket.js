@@ -18,11 +18,11 @@ function onUserConnect(callback) {
   });
 }
 
-function onRecieveCode(callback) {
+/* function onRecieveCode(callback) {
   socket.on("recieve_code", code => {
     callback(code);
   });
-}
+} */
 
 function onUserDisconnect(callback) {
   socket.on("user_disconnected", data => {
@@ -30,9 +30,9 @@ function onUserDisconnect(callback) {
   });
 }
 
-function emitTyping(text, roomId) {
+/* function emitTyping(text, roomId) {
   socket.emit("typing", { code: text, roomId: roomId });
-}
+} */
 
 function emitAssignMaster(data) {
   socket.emit("assign_master", data);
@@ -40,6 +40,25 @@ function emitAssignMaster(data) {
 
 function onNewMasterAssigned(callback) {
   socket.on("new_master_assigned", data => {
+    callback(data);
+  });
+}
+
+function emitTyping(code, roomId, userId, cursorCoordinates) {
+  const data = {
+    roomId: roomId,
+    info: {
+      code: code,
+      cursorCoordinates: cursorCoordinates,
+      userId: userId
+    }
+  };
+
+  socket.emit("typing", data);
+}
+
+function onRecieveCode(callback) {
+  socket.on("recieve_code", data => {
     callback(data);
   });
 }

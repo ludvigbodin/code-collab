@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import MonacoEditor from "../content/MonacoEditor";
 import Console from "../content/Console";
-import { setRoomData } from "../../actions/roomActions";
+import {
+  setRoomData,
+  updateUserCursorCordinates
+} from "../../actions/roomActions";
 import { setUserId } from "../../actions/userActions";
 
 import {
@@ -23,11 +26,11 @@ function PublicRoom(props) {
 
   const { dispatch, code, updateCode } = props;
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (master === user.id) {
       emitTyping(code, room.roomId);
     }
-  }, [code, master, user.id, room]);
+  }, [code, master, user.id, room]); */
 
   function setRoom(room) {
     dispatch(setRoomData(room));
@@ -53,12 +56,14 @@ function PublicRoom(props) {
     });
 
     onJoinRoom(data => {
+      document.log(data);
       setRoom(data.roomInfo);
       setUserIdToStore(data.userId);
     });
 
-    onRecieveCode(code => {
-      updateCode(code);
+    onRecieveCode(info => {
+      updateCode(info.code);
+      updateUserCord(info.userId, info.cursorCoordinates);
     });
 
     onUserDisconnect(data => {
@@ -67,16 +72,23 @@ function PublicRoom(props) {
     });
   }
 
-  const userIsMaster = master === user.id;
+  function updateUserCord(userId, cursorCoordinates) {
+    dispatch(updateUserCursorCordinates(userId, cursorCoordinates));
+  }
+
+  function userHasChangedCode(newCode, cursorCoordinates) {
+    emitTyping(newCode, room.roomId, user.id, cursorCoordinates);
+    updateCode(newCode);
+  }
 
   return (
     <div id="content-wrapper">
       <div id="content">
         <MonacoEditor
-          canEdit={userIsMaster}
           code={code}
-          updateCode={updateCode}
+          updateCode={userHasChangedCode}
           master={master}
+          users={room.users}
         />
         <Console code={code} />
       </div>

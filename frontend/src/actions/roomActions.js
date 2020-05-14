@@ -55,3 +55,17 @@ export const testAction = roomName => async dispatch => {
   const result = await response.json();
   document.log(result);
 };
+
+// TEST
+export const updateUserCursorCordinates = (
+  userId,
+  cursorCoordinates
+) => dispatch => {
+  dispatch({
+    type: Room.UPDATE_USER_CURSOR_COORDINATES,
+    data: {
+      userId: userId,
+      cursorCoordinates: cursorCoordinates
+    }
+  });
+};

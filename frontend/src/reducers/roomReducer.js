@@ -14,6 +14,19 @@ const roomReducer = (state = initState, action) => {
         ...state,
         users: action.data
       };
+    case Actions.Room.UPDATE_USER_CURSOR_COORDINATES:
+      return {
+        ...state,
+        users: state.users.map(user => {
+          if (user._id === action.data.userId) {
+            return {
+              ...user,
+              cursorCoordinates: action.data.cursorCoordinates
+            };
+          }
+          return user;
+        })
+      };
     default:
       return state;
   }
