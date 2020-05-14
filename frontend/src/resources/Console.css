@@ -1,5 +1,6 @@
 /*  CONSOLE  */
 #console-wrapper {
+  position: relative;
   grid-area: console-wrapper;
   width: 100%;
   border: 1px white;
