@@ -7,6 +7,8 @@ body {
   /* background-color: #1f2227; */
   background-color: #1a1d21;
   color: #fbfbfb;
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h3 {
@@ -39,6 +41,11 @@ h3 {
   grid-area: editor-wrapper;
   height: 100%;
   width: 100%;
+}
+
+.monaco-editor,
+.overflow-guard {
+  width: 100% !important;
 }
 
 #editor {

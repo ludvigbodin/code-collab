@@ -2,8 +2,8 @@
   height: 60px;
   border-bottom: 1px solid #2c2f34;
   display: grid;
-  grid-template-columns: 210px 1fr;
-  grid-template-areas: "logo-wrapper create-room-wrapper";
+  grid-template-columns: 210px 1fr 40%;
+  grid-template-areas: "logo-wrapper create-room-wrapper topbar-user-list-wrapper";
 }
 
 #logo-wrapper {
@@ -16,11 +16,6 @@
   height: 100%;
   cursor: pointer;
 }
-
-/* #logo-img:hover {
-  -webkit-filter: brightness(0.6) contrast(3.4) hue-rotate(217deg) saturate(9.9);
-  filter: brightness(0.6) contrast(3.4) hue-rotate(217deg) saturate(9.9);
-} */
 
 #create-room-wrapper {
   grid-area: create-room-wrapper;
@@ -67,4 +62,32 @@
 #create-room-btn:hover {
   background: #0077cca1;
   border-color: #0077cca1 !important;
+}
+
+#topbar-user-list-wrapper {
+  grid-area: topbar-user-list-wrapper;
+}
+
+#topbar-user-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.topbar-user-list-item {
+  float: left;
+  padding: 10px;
+}
+
+.topbar-user-list-item-avatar {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
 }

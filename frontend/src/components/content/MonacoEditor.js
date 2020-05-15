@@ -44,7 +44,6 @@ function MonacoEditor(props) {
 
   function applyCursorEffects() {
     if (!!test && !!editorRef && users) {
-      document.log("User changed");
       const filteredUsers = users.filter(user => user.cursorCoordinates);
       const ranges = filteredUsers.map(user => {
         const coord = user.cursorCoordinates;

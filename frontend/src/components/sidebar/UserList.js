@@ -1,5 +1,6 @@
 import React from "react";
 import UserListItem from "./UserListItem";
+import SidebarTitle from "./item/SidebarTitle";
 
 function UserList(props) {
   const { userId, users, master, assignNewMaster } = props;
@@ -20,9 +21,7 @@ function UserList(props) {
 
   return (
     <>
-      <div id="sidebar-user-list-title-wrapper">
-        <h3 id="sidebar-user-list-title"> Users </h3>
-      </div>
+      <SidebarTitle icon="fas fa-user-friends" title="Code monkeys" />
       <div id="user-list">
         {usersWithMasterProp.map((user, index) => (
           <UserListItem
