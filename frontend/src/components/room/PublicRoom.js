@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import MonacoEditor from "../content/MonacoEditor";
-import Console from "../content/Console";
 import {
   setRoomData,
   updateUserCursorCordinates
@@ -25,12 +24,6 @@ function PublicRoom(props) {
   const master = room.master;
 
   const { dispatch, code, updateCode } = props;
-
-  /*   useEffect(() => {
-    if (master === user.id) {
-      emitTyping(code, room.roomId);
-    }
-  }, [code, master, user.id, room]); */
 
   function setRoom(room) {
     dispatch(setRoomData(room));
@@ -90,7 +83,6 @@ function PublicRoom(props) {
           master={master}
           users={room.users}
         />
-        <Console code={code} />
       </div>
     </div>
   );

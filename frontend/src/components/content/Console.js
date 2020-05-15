@@ -17,7 +17,6 @@ function Console(props) {
         <span id="console-text"> console </span>
       </div>
       <div id="console-scroll">
-        {/* <div id="console" /> */}
         <ul id="console"></ul>
       </div>
     </div>

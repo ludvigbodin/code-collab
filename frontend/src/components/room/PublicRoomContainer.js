@@ -5,6 +5,7 @@ import { joinRoom } from "../../actions/roomActions";
 import PublicRoom from "./PublicRoom";
 import { updateCodeInStore } from "../../actions/codeActions";
 import { overrideConsole } from "../../utils/output";
+import Console from "../content/Console";
 
 function PublicRoomContainer(props) {
   const roomId = props.match.params.room;
@@ -33,6 +34,7 @@ function PublicRoomContainer(props) {
           roomId={roomId}
         />
       )}
+      <Console code={code} />
     </div>
   );
 }

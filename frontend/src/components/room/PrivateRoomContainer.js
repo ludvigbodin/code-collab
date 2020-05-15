@@ -5,6 +5,7 @@ import PrivateRoom from "./PrivateRoom";
 import Sidebar from "../sidebar/Sidebar";
 import { updateCodeInStore } from "../../actions/codeActions";
 import { overrideConsole } from "../../utils/output";
+import Console from "../content/Console";
 
 function PrivateRoomContainer() {
   const code = useSelector(state => state.code);
@@ -20,6 +21,7 @@ function PrivateRoomContainer() {
     <div id="root-layout">
       <Sidebar />
       <PrivateRoom updateCode={updateCode} code={code} />
+      <Console code={code} />
     </div>
   );
 }

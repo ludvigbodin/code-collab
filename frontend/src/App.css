@@ -22,8 +22,8 @@ h3 {
 #root-layout {
   position: relative;
   display: grid;
-  grid-template-columns: 210px 1fr;
-  grid-template-areas: "sidebar content-wrapper";
+  grid-template-columns: 210px 60% 1fr;
+  grid-template-areas: "sidebar content-wrapper console-wrapper";
 }
 
 #content-wrapper {
@@ -31,10 +31,8 @@ h3 {
 }
 
 #content {
+  width: 100%;
   height: calc(100vh - 60px);
-  display: grid;
-  grid-template-columns: 60% 1fr;
-  grid-template-areas: "editor-wrapper console-wrapper";
 }
 
 #editor-wrapper {
