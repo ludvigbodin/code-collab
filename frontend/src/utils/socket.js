@@ -24,10 +24,6 @@ function onUserDisconnect(callback) {
   });
 }
 
-function emitAssignMaster(data) {
-  socket.emit("assign_master", data);
-}
-
 function onNewMasterAssigned(callback) {
   socket.on("new_master_assigned", data => {
     callback(data);
@@ -59,7 +55,5 @@ export {
   onUserConnect,
   onRecieveCode,
   onUserDisconnect,
-  emitTyping,
-  emitAssignMaster,
-  onNewMasterAssigned
+  emitTyping
 };

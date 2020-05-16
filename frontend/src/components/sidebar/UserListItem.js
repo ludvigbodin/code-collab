@@ -1,16 +1,11 @@
 import React from "react";
 
 function UserListItem(props) {
-  const { userIsMaster, user, assignNewMaster } = props;
+  const { userIsMaster, user } = props;
 
   let masterBadge = <span className="badge master">Master</span>;
   let assignMasterBadge = (
-    <span
-      onClick={() => assignNewMaster(user._id)}
-      className="badge assign-master"
-    >
-      Assign master
-    </span>
+    <span className="badge assign-master">Assign master</span>
   );
 
   return (

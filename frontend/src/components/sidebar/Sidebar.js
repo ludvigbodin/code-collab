@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import UserList from "./UserList";
-import { emitAssignMaster, onNewMasterAssigned } from "../../utils/socket";
 import { setRoomData } from "../../actions/roomActions";
 import RoomSettings from "./RoomSettings";
 
@@ -13,37 +12,10 @@ function Sidebar() {
   const { users, master, roomId } = roomData;
   const { id, hasJoinedRoom } = user;
 
-  useEffect(initilizeHooks, []);
-
-  function initilizeHooks() {
-    onNewMasterAssigned(data => {
-      setRoom(data);
-    });
-  }
-
-  function setRoom(data) {
-    dispatch(setRoomData(data));
-  }
-
-  function assignNewMaster(userId) {
-    const data = {
-      userId: userId,
-      roomId: roomId
-    };
-    emitAssignMaster(data);
-  }
-
   return (
     <div id="sidebar">
       <RoomSettings dispatch={dispatch} />
-      {hasJoinedRoom && (
-        <UserList
-          assignNewMaster={assignNewMaster}
-          master={master}
-          userId={id}
-          users={users}
-        />
-      )}
+      {hasJoinedRoom && <UserList master={master} userId={id} users={users} />}
     </div>
   );
 }

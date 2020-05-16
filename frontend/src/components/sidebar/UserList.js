@@ -3,7 +3,7 @@ import UserListItem from "./UserListItem";
 import SidebarTitle from "./item/SidebarTitle";
 
 function UserList(props) {
-  const { userId, users, master, assignNewMaster } = props;
+  const { userId, users, master } = props;
 
   const usersWithMasterProp = users.map(user => {
     if (user._id === master) {
@@ -24,12 +24,7 @@ function UserList(props) {
       <SidebarTitle icon="fas fa-user-friends" title="Code monkeys" />
       <div id="user-list">
         {usersWithMasterProp.map((user, index) => (
-          <UserListItem
-            key={index}
-            user={user}
-            userIsMaster={userIsMaster}
-            assignNewMaster={assignNewMaster}
-          />
+          <UserListItem key={index} user={user} userIsMaster={userIsMaster} />
         ))}
       </div>
     </>
