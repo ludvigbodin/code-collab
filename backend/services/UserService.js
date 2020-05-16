@@ -1,4 +1,3 @@
-const RoomModel = require("../models/room");
 const UserModel = require("../models/user");
 
 class UserService {
@@ -11,9 +10,6 @@ class UserService {
       socketId: socketId
     });
     const result = await user.save();
-    console.log(
-      "Created user with name " + name + " and joined room " + roomId
-    );
     return result;
   }
 

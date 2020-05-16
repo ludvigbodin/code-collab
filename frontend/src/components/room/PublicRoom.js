@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import MonacoEditor from "../content/MonacoEditor";
 import {
   setRoomData,
-  updateUserCursorCordinates
+  updateUserCursorCordinates,
+  addUserToRoom,
+  removeUserFromRoom
 } from "../../actions/roomActions";
 import { setUserId } from "../../actions/userActions";
 
@@ -29,6 +31,14 @@ function PublicRoom(props) {
     dispatch(setRoomData(room));
   }
 
+  function addUser(user) {
+    dispatch(addUserToRoom(user));
+  }
+
+  function removeUser(user) {
+    dispatch(removeUserFromRoom(user));
+  }
+
   function setUserIdToStore(userId) {
     dispatch(setUserId(userId));
   }
@@ -41,11 +51,9 @@ function PublicRoom(props) {
     document.log("Name: " + name + " Room: " + props.roomId);
     emitJoinRoom(name, props.roomId);
 
-    onUserConnect(info => {
-      document.log("Room Info", info.roomInfo);
-      document.log("Joined user ", info.user);
-      setRoom(info.roomInfo);
-      notifyInfo(info.user + " joined");
+    onUserConnect(user => {
+      addUser(user);
+      notifyInfo(user.name + " joined");
     });
 
     onJoinRoom(data => {
@@ -59,9 +67,9 @@ function PublicRoom(props) {
       updateUserCord(info.userId, info.cursorCoordinates);
     });
 
-    onUserDisconnect(data => {
-      setRoom(data.info);
-      notifyWarning(data.user.name + " disconnected");
+    onUserDisconnect(user => {
+      removeUser(user);
+      notifyWarning(user.name + " disconnected");
     });
   }
 

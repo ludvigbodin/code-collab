@@ -6,10 +6,14 @@ TODO LIST:
 - Fixa bättre "Sidebar" struktur, dela upp i komponenter
 
 
+Maybe:
+- Code Mirror istället för Monaco Editor
+
 
 DONE:
 - Private Room by default - DONE
 - Kunna Skapa Sessions och bjuda in folk - DONE
+- Topbar User List - DONE
 
 - Fixa disconnect i Socket2.js - DONE
 - Fixa assignNewMaster så att den endast returnerar Master ID, och inte ALL info - DONE

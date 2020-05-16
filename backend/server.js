@@ -4,8 +4,7 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const morgan = require("morgan");
 const config = require("config");
-
-const initilizeSocket = require("./socket");
+const sockets = require("./sockets");
 
 const RoomService = require("./services/RoomService");
 const roomService = new RoomService();
@@ -17,7 +16,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 db.connect("user", "password");
-initilizeSocket(io);
+sockets.init(io);
 
 const PORT = 5000;
 

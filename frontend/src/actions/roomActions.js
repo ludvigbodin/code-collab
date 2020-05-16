@@ -31,8 +31,6 @@ export const joinRoom = roomId => async dispatch => {
   }
 };
 
-// OLD
-
 export const setRoomData = room => dispatch => {
   dispatch({
     type: Room.SET_ROOM_DATA,
@@ -47,16 +45,20 @@ export const setRoomUsers = users => dispatch => {
   });
 };
 
-export const testAction = roomName => async dispatch => {
-  const url = "api/room/test";
-  const data = { roomName: roomName };
-
-  const response = await post(url, data);
-  const result = await response.json();
-  document.log(result);
+export const addUserToRoom = user => dispatch => {
+  dispatch({
+    type: Room.ADD_USER_TO_ROOM,
+    data: user
+  });
 };
 
-// TEST
+export const removeUserFromRoom = user => dispatch => {
+  dispatch({
+    type: Room.REMOVE_USER_FROM_ROOM,
+    data: user
+  });
+};
+
 export const updateUserCursorCordinates = (
   userId,
   cursorCoordinates

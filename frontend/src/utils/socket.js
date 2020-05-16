@@ -18,21 +18,11 @@ function onUserConnect(callback) {
   });
 }
 
-/* function onRecieveCode(callback) {
-  socket.on("recieve_code", code => {
-    callback(code);
-  });
-} */
-
 function onUserDisconnect(callback) {
   socket.on("user_disconnected", data => {
     callback(data);
   });
 }
-
-/* function emitTyping(text, roomId) {
-  socket.emit("typing", { code: text, roomId: roomId });
-} */
 
 function emitAssignMaster(data) {
   socket.emit("assign_master", data);

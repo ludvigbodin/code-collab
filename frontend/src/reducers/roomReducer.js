@@ -14,6 +14,20 @@ const roomReducer = (state = initState, action) => {
         ...state,
         users: action.data
       };
+    case Actions.Room.ADD_USER_TO_ROOM: {
+      return {
+        ...state,
+        users: [...state.users, action.data]
+      };
+    }
+    case Actions.Room.REMOVE_USER_FROM_ROOM: {
+      return {
+        ...state,
+        users: state.users.filter(
+          user => user.socketId !== action.data.socketId
+        )
+      };
+    }
     case Actions.Room.UPDATE_USER_CURSOR_COORDINATES:
       return {
         ...state,
