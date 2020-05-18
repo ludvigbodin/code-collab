@@ -71,7 +71,7 @@
   margin: 0 16px;
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;
+  font-size: 22px;
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -87,8 +87,3 @@
   height: 40px;
   align-items: center;
 }
-
-/* .sidebar-title {
-  display: inline-flex;
-  align-items: center;
-} */

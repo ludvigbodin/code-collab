@@ -1,12 +1,11 @@
 TODO LIST:
 
-- Fixa färger på Cursor för användare
-- Fixa fäger på användare
 - Fixa så att cursor ändras för andra när man byter ställe med musen.
 - Fixa bättre "Sidebar" struktur, dela upp i komponenter
 - Kolla om personen finns i databasen, annars spara ner IP adress
 - Kunna ändra färger på användare
 - Kunna ändra namn
+- FIXA MODAL FÖR NAMN, NÄR ANVÄNDARE JOINAR RUM
 
 
 Maybe:
@@ -23,6 +22,8 @@ DONE:
 - Fixa Execute Code knapp - DONE
 - Fixa toggle live execution - DONE
 - Fixa meddelanden (popup, typ "Rum existerar inte längre")  - DONE
+- Fixa färger på Cursor för användare
+- Fixa fäger på användare
 
 
 https://www.npmjs.com/package/typedi  --- Dependency Inj för express

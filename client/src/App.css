@@ -75,3 +75,65 @@ h3 {
 .user-color-pink {
   background: pink !important;
 }
+
+/* Modal */
+.modal {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position: fixed;
+  background: white;
+  width: 260px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+}
+
+.modal-section {
+  padding-top: 24px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+#modal-title {
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+#modal-title-h3 {
+  font-size: 20px !important;
+}
+
+#modal-input {
+  display: flex;
+  align-items: center;
+}
+
+#modal-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.modal-input {
+  height: 30px;
+  font-size: 18px;
+}
