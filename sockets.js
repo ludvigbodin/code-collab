@@ -27,7 +27,7 @@ sockets.init = function(io) {
           roomInfo: roomInfo,
           userId: user._id
         };
-
+        console.log(usersInRoom);
         io.to(socket.id).emit("join_room", infoToJoinedUser);
         socket.broadcast.to(roomId).emit("user_connected", user);
       });

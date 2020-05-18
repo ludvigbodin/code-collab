@@ -7,8 +7,7 @@ class RoomService {
 
   async createRoom(roomName) {
     const room = new RoomModel({
-      roomName: roomName,
-      created: new Date()
+      roomName: roomName
     });
     const result = await room.save();
     console.log("Created room with id: " + result._id);

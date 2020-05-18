@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
 
-db.connect(process.env.MONGO_URI, process.env.DB_NAME);
+db.connect(process.env.MONGO_URI);
 sockets.init(io);
 
 // serves the built version of your react app

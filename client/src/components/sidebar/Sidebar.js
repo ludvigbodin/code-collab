@@ -8,13 +8,13 @@ function Sidebar() {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  const { users, master } = roomData;
+  const { users } = roomData;
   const { id, hasJoinedRoom } = user;
 
   return (
     <div id="sidebar">
       <RoomSettings dispatch={dispatch} />
-      {hasJoinedRoom && <UserList master={master} userId={id} users={users} />}
+      {hasJoinedRoom && <UserList userId={id} users={users} />}
     </div>
   );
 }

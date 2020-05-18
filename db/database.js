@@ -1,17 +1,15 @@
 const mongoose = require("mongoose");
 
 class Database {
-  async connect(uri, dbName) {
+  async connect(uri) {
     try {
       await mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false
       });
-      console.log("Connected to MongoDB using Mongoose");
+      console.log("Connected to MongoDB");
       var db = mongoose.connection;
-      db.useDb(dbName);
-      console.log(dbName);
     } catch (err) {
       console.log(err.stack);
     }

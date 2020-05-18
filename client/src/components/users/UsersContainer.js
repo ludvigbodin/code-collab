@@ -1,7 +1,7 @@
 import React from "react";
 
 function UsersContainer(props) {
-  const { users, userIsMaster } = props;
+  const { users } = props;
 
   return (
     <div>

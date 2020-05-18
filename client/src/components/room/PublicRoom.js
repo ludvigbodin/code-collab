@@ -23,7 +23,6 @@ import { notifyWarning, notifyInfo } from "../../utils/toaster";
 function PublicRoom(props) {
   const user = useSelector(state => state.user);
   const room = useSelector(state => state.room);
-  const master = room.master;
 
   const { dispatch, code, updateCode } = props;
 
@@ -88,7 +87,6 @@ function PublicRoom(props) {
         <MonacoEditor
           code={code}
           updateCode={userHasChangedCode}
-          master={master}
           users={room.users}
         />
       </div>

@@ -1,19 +1,11 @@
 import React from "react";
 
 function UserListItem(props) {
-  const { userIsMaster, user } = props;
-
-  let masterBadge = <span className="badge master">Master</span>;
-  let assignMasterBadge = (
-    <span className="badge assign-master">Assign master</span>
-  );
+  const { user } = props;
 
   return (
     <div id="sidebar-item">
-      <h3 id="sidebar-item-text">
-        {user.name}{" "}
-        {user.master ? masterBadge : userIsMaster && assignMasterBadge}{" "}
-      </h3>
+      <h3 id="sidebar-item-text">{user.name}</h3>
     </div>
   );
 }
