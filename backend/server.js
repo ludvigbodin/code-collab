@@ -3,7 +3,7 @@ const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const morgan = require("morgan");
-const config = require("config");
+require("dotenv").config();
 const sockets = require("./sockets");
 
 const RoomService = require("./services/RoomService");
@@ -15,10 +15,10 @@ const db = new Database();
 app.use(express.json());
 app.use(morgan("tiny"));
 
-db.connect("user", "password");
+db.connect(process.env.MONGO_URI);
 sockets.init(io);
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.post("/api/room/create", async (req, res) => {
   if (!req.body.roomName || req.body.roomName.length === 0) {

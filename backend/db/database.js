@@ -1,13 +1,9 @@
 const mongoose = require("mongoose");
 
 class Database {
-  async connect(user, password) {
-    user = "dbUser";
-    password = "dbUserPassword";
-
-    const url = `mongodb+srv://${user}:${password}@mongocluster-tkvat.mongodb.net/test?retryWrites=true&w=majority`;
+  async connect(uri) {
     try {
-      const connect = await mongoose.connect(url, {
+      await mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true
@@ -21,10 +17,5 @@ class Database {
     }
   }
 }
-
-const url2 =
-  "mongodb+srv://dbUser:dbUserPassword@mongocluster-tkvat.mongodb.net/CodeTogetherDb?retryWrites=true&w=majority";
-
-const urlLocalhost = "mongodb://localhost/code";
 
 module.exports = Database;
