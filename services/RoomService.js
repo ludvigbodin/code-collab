@@ -7,7 +7,8 @@ class RoomService {
 
   async createRoom(roomName) {
     const room = new RoomModel({
-      roomName: roomName
+      roomName: roomName,
+      created: new Date()
     });
     const result = await room.save();
     console.log("Created room with id: " + result._id);
@@ -31,6 +32,10 @@ class RoomService {
     return await RoomModel.findOneAndUpdate({ _id: roomId }, data, {
       new: true
     });
+  }
+
+  async setAllRoomsToInactive() {
+    return await RoomModel.updateMany({ isActive: true }, { isActive: false });
   }
 }
 

@@ -5,7 +5,7 @@ import { ControlledEditor, monaco } from "@monaco-editor/react";
 function MonacoEditor(props) {
   const { updateCode, code, users } = props;
 
-  const [test, setTest] = useState(null);
+  const [monacoInstance, setMonacoInstance] = useState(null);
   const [decorations, setDecorations] = useState([]);
 
   const theme = useSelector(state => state.theme);
@@ -18,7 +18,7 @@ function MonacoEditor(props) {
     monaco
       .init()
       .then(monaco => {
-        setTest(monaco);
+        setMonacoInstance(monaco);
       })
       .catch(error =>
         console.error(
@@ -31,9 +31,9 @@ function MonacoEditor(props) {
   const editorValue = useRef(null);
   const editorRef = useRef(null);
 
-  function handleEditorDidMount(_editorValue, test) {
+  function handleEditorDidMount(_editorValue, _editorRef) {
     editorValue.current = _editorValue;
-    editorRef.current = test;
+    editorRef.current = _editorRef;
   }
 
   function onChange() {
@@ -43,12 +43,12 @@ function MonacoEditor(props) {
   }
 
   function applyCursorEffects() {
-    if (!!test && !!editorRef && users) {
+    if (!!monacoInstance && !!editorRef && users) {
       const filteredUsers = users.filter(user => user.cursorCoordinates);
       const ranges = filteredUsers.map(user => {
         const coord = user.cursorCoordinates;
         return {
-          range: new test.Range(
+          range: new monacoInstance.Range(
             coord.lineNumber,
             coord.column,
             coord.lineNumber,

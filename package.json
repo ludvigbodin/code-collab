@@ -18,7 +18,10 @@
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.3",
+    "node-schedule": "^1.3.2",
     "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
