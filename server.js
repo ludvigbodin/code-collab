@@ -65,6 +65,26 @@ app.get("/api/room/join/:roomId", async (req, res) => {
   res.send(room);
 });
 
+app.get("/api/room/validate/:roomId", async (req, res) => {
+  const roomId = req.params.roomId;
+  const room = await roomService.getRoomById(roomId);
+
+  if (room === null) {
+    res.status(400).send({ message: "Room doesn't exist" });
+    return;
+  }
+  if (room.isActive === false) {
+    res.status(500).send({ message: "Room isn't active" });
+    return;
+  }
+  const activeUsers = await roomService.getActiveUsersInRoomById(roomId);
+  if (activeUsers.length > 4) {
+    res.status(500).send({ message: "Room " + room.name + " is full" });
+    return;
+  }
+  res.send(room);
+});
+
 app.get("/api/status", (req, res) => {
   res.send({ status: "running", port: process.env.PORT });
 });

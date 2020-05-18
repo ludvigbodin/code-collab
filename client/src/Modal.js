@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { notifyError } from "./utils/toaster";
 
 function Modal(props) {
   const [name, setName] = useState("");
@@ -7,7 +8,15 @@ function Modal(props) {
 
   const showHideClassName = show ? "modal display-block" : "modal display-none";
   function onClick() {
-    handleOk(name);
+    if (name.length > 12) {
+      notifyError("Your name is too long buddy! :)");
+      return;
+    } else if (name.length === 0) {
+      notifyError("Please, enter your name! :) ");
+      return;
+    } else {
+      handleOk(name);
+    }
   }
 
   return (
@@ -15,7 +24,7 @@ function Modal(props) {
       <section className="modal-main">
         <div id="modal-content">
           <div className="modal-section" id="modal-title">
-            <h3 id="modal-title-h3"> Enter your name</h3>
+            <h3 id="modal-title-h3"> Your name please</h3>
           </div>
           <div className="modal-section" id="modal-input">
             <input

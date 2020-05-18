@@ -1,6 +1,6 @@
 import { Actions } from "../constants/actions";
 
-const initState = { users: [], room: "" };
+const initState = { users: [], roomName: "" };
 
 const roomReducer = (state = initState, action) => {
   switch (action.type) {

@@ -1,8 +1,8 @@
 import { Actions } from "../constants/actions";
 import { post, get } from "./restClient";
 import history from "../history";
-import { setUserHasJoinedRoom } from "./userActions";
-import { notifyError, notifyInfo } from "../utils/toaster";
+import { setUserRoomInfo } from "./userActions";
+import { notifyError } from "../utils/toaster";
 
 const Room = Actions.Room;
 
@@ -18,18 +18,30 @@ export const createRoom = roomName => async dispatch => {
   }
 };
 
-export const joinRoom = roomId => async dispatch => {
+export const validateRoom = roomId => async dispatch => {
   document.log(roomId);
-  const url = `api/room/join/${roomId}`;
+  const url = `api/room/validate/${roomId}`;
   try {
     const json = await get(url);
-    dispatch(setUserHasJoinedRoom(true));
-    notifyInfo("You have joined room " + json.roomName);
+    dispatch(setUserRoomInfo({ validated: true, roomName: json.roomName }));
   } catch (err) {
     history.push("/");
     notifyError(err.message);
   }
 };
+
+/* export const joinRoom = roomId => async dispatch => {
+  document.log(roomId);
+  const url = `api/room/join/${roomId}`;
+  try {
+    const json = await get(url);
+    dispatch(setUserRoomInfo({ validated: true, roomName: json.roomName }));
+    notifyInfo("You have joined room " + json.roomName);
+  } catch (err) {
+    history.push("/");
+    notifyError(err.message);
+  }
+}; */
 
 export const setRoomData = room => dispatch => {
   dispatch({

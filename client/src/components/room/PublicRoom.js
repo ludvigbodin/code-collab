@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import MonacoEditor from "../content/MonacoEditor";
 import {
   setRoomData,
@@ -21,10 +20,9 @@ import {
 import { notifyWarning, notifyInfo } from "../../utils/toaster";
 
 function PublicRoom(props) {
-  const user = useSelector(state => state.user);
-  const room = useSelector(state => state.room);
+  const { dispatch, code, updateCode, user, roomId, room } = props;
 
-  const { dispatch, code, updateCode } = props;
+  useEffect(initializeSockets, [user.name, roomId]);
 
   function setRoom(room) {
     dispatch(setRoomData(room));
@@ -42,13 +40,11 @@ function PublicRoom(props) {
     dispatch(setUserId(userId));
   }
 
-  useEffect(initializeSockets, [props.roomId]);
-
   function initializeSockets() {
-    /* let name = prompt('whats ur name?') */
-    let name = "John Doe " + Math.floor(Math.random() * 100);
-    document.log("Name: " + name + " Room: " + props.roomId);
-    emitJoinRoom(name, props.roomId);
+    if (user.name && roomId) {
+      emitJoinRoom(user.name, roomId);
+      notifyInfo("You have joined room " + user.userRoomInfo.roomName);
+    }
 
     onUserConnect(user => {
       addUser(user);

@@ -90,7 +90,7 @@ h3 {
 .modal-main {
   position: fixed;
   background: white;
-  width: 260px;
+  width: 300px;
   height: 200px;
   top: 50%;
   left: 50%;
@@ -136,4 +136,5 @@ h3 {
 .modal-input {
   height: 30px;
   font-size: 18px;
+  font-family: monospace !important;
 }

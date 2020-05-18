@@ -9,12 +9,12 @@ function Sidebar() {
   const dispatch = useDispatch();
 
   const { users } = roomData;
-  const { id, hasJoinedRoom } = user;
+  const { id, userRoomInfo } = user;
 
   return (
     <div id="sidebar">
       <RoomSettings dispatch={dispatch} />
-      {hasJoinedRoom && <UserList userId={id} users={users} />}
+      {userRoomInfo.validated && <UserList userId={id} users={users} />}
     </div>
   );
 }

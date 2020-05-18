@@ -14,9 +14,16 @@ export const setUserId = userId => dispatch => {
   });
 };
 
-export const setUserHasJoinedRoom = value => dispatch => {
+export const setUserRoomInfo = data => dispatch => {
   dispatch({
-    type: Actions.User.SET_USER_HAS_JOINED_ROOM,
-    data: value
+    type: Actions.User.SET_USER_ROOM_INFO,
+    data: data
+  });
+};
+
+export const setUserName = name => dispatch => {
+  dispatch({
+    type: Actions.User.SET_USER_NAME,
+    data: name
   });
 };
