@@ -6,7 +6,7 @@ class Database {
       await mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: true
+        useFindAndModify: false
       });
       console.log("Connected to MongoDB using Mongoose");
       var db = mongoose.connection;

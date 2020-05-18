@@ -32,29 +32,6 @@ class RoomService {
       new: true
     });
   }
-
-  async roomHasMaster(roomId) {
-    const activeUsers = await this.getActiveUsersInRoomById(roomId);
-    const room = await this.getRoomById(roomId);
-
-    let filtered = activeUsers.filter(user => user._id === room.master);
-
-    return room.master === null ? false : true;
-  }
-
-  async assignUserAsMasterForRoom(roomId, userId) {
-    return await this.updateRoom(roomId, { master: userId });
-  }
-
-  async assignRandomUserAsMaster(roomId) {
-    let user = await UserModel.findOne({
-      room: roomId,
-      active: true
-    });
-    let userId = user === null ? null : user._id;
-    console.log("Random Room Master: " + userId);
-    await this.updateRoom(roomId, { master: userId });
-  }
 }
 
 module.exports = RoomService;

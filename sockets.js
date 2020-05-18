@@ -38,14 +38,9 @@ sockets.init = function(io) {
     });
 
     socket.on("disconnect", async () => {
-      let disconnectedUser = await userService.disconnectUserFromRoom(
-        socket.id
-      );
-      if (disconnectedUser) {
-        io.to(disconnectedUser.room).emit(
-          "user_disconnected",
-          disconnectedUser
-        );
+      const user = await userService.disconnectUserFromRoom(socket.id);
+      if (user) {
+        io.to(user.room).emit("user_disconnected", user);
       }
     });
   });
