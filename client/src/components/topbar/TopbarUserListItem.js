@@ -1,4 +1,5 @@
 import React from "react";
+import { getUserNickname } from "../../utils/userNickname";
 
 function TopbarUserListItem(props) {
   const { name, color } = props.user;
@@ -10,7 +11,7 @@ function TopbarUserListItem(props) {
   return (
     <li className="topbar-user-list-item">
       <div style={style} className="topbar-user-list-item-avatar">
-        {name[0]}
+        {getUserNickname(name)}
       </div>
     </li>
   );

@@ -10,7 +10,7 @@ function ExecuteButton() {
   }
 
   return (
-    <div id="settings-item-wrapper">
+    <div className="settings-item-wrapper">
       <button className="blue-btn execute-now-btn" onClick={execute}>
         <i className="fa fa-play"></i> Run
       </button>

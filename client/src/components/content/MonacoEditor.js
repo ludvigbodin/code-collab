@@ -14,7 +14,6 @@ function MonacoEditor(props) {
   useEffect(applyCursorEffects, [users]);
 
   useEffect(() => {
-    document.log("Init");
     monaco
       .init()
       .then(monaco => {

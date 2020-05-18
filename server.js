@@ -19,6 +19,11 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
 
+app.use((err, req, res, next) => {
+  res.status(err.statusCode).send({ message: err.message });
+  return;
+});
+
 db.connect(process.env.MONGO_URI);
 sockets.init(io);
 

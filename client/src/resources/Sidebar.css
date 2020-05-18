@@ -3,20 +3,32 @@
   border-right: 1px solid #2c2f34;
 }
 
-#sidebar-item {
+.sidebar-item {
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
 }
 
-#sidebar-item-text {
+.sidebar-item-text {
   height: 36px;
   line-height: 36px;
-  padding: 0 10px;
+  padding: 0 15px;
   font-size: 14px;
   font-weight: normal;
   position: relative;
   text-decoration: none;
   transition: all 0.15s;
+}
+
+.sidebar-user-list-item-avatar {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  font-size: 12px;
 }
 
 .badge {
@@ -35,10 +47,11 @@
 }
 
 /* Settings */
-#settings-item-wrapper {
+.settings-item-wrapper {
   height: 35px;
-  padding: 10px 20px;
+  padding: 5px 20px;
   display: flex;
+  align-items: center;
 }
 
 #toggle-text {

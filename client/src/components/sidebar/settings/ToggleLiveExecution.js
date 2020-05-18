@@ -12,7 +12,7 @@ function ToggleLiveExecution(props) {
   }
 
   return (
-    <div id="settings-item-wrapper">
+    <div className="settings-item-wrapper">
       <ToggleButton value={liveExecution} onToggle={toggle} />
       <h3 id="toggle-text"> Live execute </h3>
     </div>

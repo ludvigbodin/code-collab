@@ -10,7 +10,7 @@ function UserList(props) {
       <SidebarTitle icon="fas fa-user-friends" title="Code monkeys" />
       <div id="user-list">
         {users.map((user, index) => (
-          <UserListItem key={index} user={user} />
+          <UserListItem key={index} user={user} userId={userId} />
         ))}
       </div>
     </>

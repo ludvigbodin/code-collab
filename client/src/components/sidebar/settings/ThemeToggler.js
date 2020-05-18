@@ -14,7 +14,7 @@ function ThemeToggler() {
   const isActive = theme === "dark";
 
   return (
-    <div id="settings-item-wrapper">
+    <div className="settings-item-wrapper">
       <ToggleButton
         value={isActive}
         onToggle={toggle}
