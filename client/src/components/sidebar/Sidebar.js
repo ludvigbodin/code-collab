@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import UserList from "./UserList";
-import { setRoomData } from "../../actions/roomActions";
 import RoomSettings from "./RoomSettings";
 
 function Sidebar() {
@@ -9,7 +8,7 @@ function Sidebar() {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  const { users, master, roomId } = roomData;
+  const { users, master } = roomData;
   const { id, hasJoinedRoom } = user;
 
   return (

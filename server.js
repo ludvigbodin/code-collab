@@ -30,7 +30,7 @@ app.post("/api/room/create", async (req, res) => {
   res.send({ roomId: roomId });
 });
 
-app.get("/api/join/:roomId", async (req, res) => {
+app.get("/api/room/join/:roomId", async (req, res) => {
   const roomId = req.params.roomId;
   const room = await roomService.getRoomById(roomId);
   room === null

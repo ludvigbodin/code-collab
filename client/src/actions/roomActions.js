@@ -20,7 +20,7 @@ export const createRoom = roomName => async dispatch => {
 
 export const joinRoom = roomId => async dispatch => {
   document.log(roomId);
-  const url = `api/join/${roomId}`;
+  const url = `api/room/join/${roomId}`;
   try {
     const json = await get(url);
     dispatch(setUserHasJoinedRoom(true));

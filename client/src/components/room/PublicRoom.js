@@ -16,7 +16,7 @@ import {
   emitTyping,
   onUserDisconnect,
   onJoinRoom
-} from "../../utils/socket";
+} from "../../utils/client-sockets";
 
 import { notifyWarning, notifyInfo } from "../../utils/toaster";
 

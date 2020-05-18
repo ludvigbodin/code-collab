@@ -5,6 +5,8 @@ TODO LIST:
 - Fixa så att cursor ändras för andra när man byter ställe med musen.
 - Fixa bättre "Sidebar" struktur, dela upp i komponenter
 - Kolla om personen finns i databasen, annars spara ner IP adress
+- Kunna ändra färger på användare
+- Kunna ändra namn
 
 
 Maybe:

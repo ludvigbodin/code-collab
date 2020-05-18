@@ -24,12 +24,6 @@ function onUserDisconnect(callback) {
   });
 }
 
-function onNewMasterAssigned(callback) {
-  socket.on("new_master_assigned", data => {
-    callback(data);
-  });
-}
-
 function emitTyping(code, roomId, userId, cursorCoordinates) {
   const data = {
     roomId: roomId,
