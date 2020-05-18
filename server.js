@@ -15,7 +15,7 @@ const db = new Database();
 app.use(express.json());
 app.use(morgan("tiny"));
 
-db.connect(process.env.MONGO_URI);
+db.connect(process.env.MONGO_URI, process.env.DB_NAME);
 sockets.init(io);
 
 const PORT = process.env.PORT || 5000;

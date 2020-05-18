@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 class Database {
-  async connect(uri) {
+  async connect(uri, dbName) {
     try {
       await mongoose.connect(uri, {
         useNewUrlParser: true,
@@ -10,8 +10,8 @@ class Database {
       });
       console.log("Connected to MongoDB using Mongoose");
       var db = mongoose.connection;
-      db.useDb("CodeTogetherDb");
-      console.log("Using: CodeTogetherDB");
+      db.useDb(dbName);
+      console.log(dbName);
     } catch (err) {
       console.log(err.stack);
     }

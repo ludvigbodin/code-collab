@@ -4,6 +4,7 @@ TODO LIST:
 - Fixa fäger på användare
 - Fixa så att cursor ändras för andra när man byter ställe med musen.
 - Fixa bättre "Sidebar" struktur, dela upp i komponenter
+- Kolla om personen finns i databasen, annars spara ner IP adress
 
 
 Maybe:
