@@ -6,7 +6,8 @@ const morgan = require("morgan");
 require("dotenv").config();
 const sockets = require("./sockets");
 const schedule = require("node-schedule");
-const moment = require("moment");
+const cors = require("cors");
+const path = require("path");
 
 const RoomService = require("./services/RoomService");
 const roomService = new RoomService();
@@ -16,9 +17,16 @@ const db = new Database();
 
 app.use(express.json());
 app.use(morgan("tiny"));
+app.use(cors());
 
 db.connect(process.env.MONGO_URI, process.env.DB_NAME);
 sockets.init(io);
+
+// serves the built version of your react app
+/* app.use(express.static(path.join(__dirname, "client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+}); */
 
 const PORT = process.env.PORT || 5000;
 
@@ -53,15 +61,8 @@ app.get("/api/room/join/:roomId", async (req, res) => {
 });
 
 app.get("/api/status", (req, res) => {
-  res.send({ status: "running" });
+  res.send({ status: "running", port: process.env.PORT });
 });
-
-// TEST -----------------------
-app.get("/api/test", async (req, res) => {
-  const rest = await roomService.getRoomById("5eb9b2b683b3c79a35ea4cf1");
-  res.send(rest);
-});
-// -----------------------------
 
 http.listen(PORT, () => {
   console.log("Server running on PORT: " + PORT);
