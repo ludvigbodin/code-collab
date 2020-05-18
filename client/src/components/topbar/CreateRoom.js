@@ -15,6 +15,7 @@ function CreateRoom(props) {
     <div id="create-room-wrapper">
       <form id="create-room-form">
         <input
+          className="input-style "
           id="create-room-textfield"
           type="text"
           value={roomName}

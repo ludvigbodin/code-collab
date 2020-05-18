@@ -25,6 +25,8 @@
 
 #create-room-form {
   margin: auto 0;
+  display: flex;
+  align-items: center;
 }
 
 #create-room-textfield {
@@ -42,8 +44,10 @@
   border-color: #0077cc !important;
   border-radius: 4px;
   cursor: pointer;
+  font-family: monospace;
+  font-size: 14px;
 }
-
+/* 
 .create-room-btn:hover {
   background: #0077cca1;
   border-color: #0077cca1 !important;
@@ -62,7 +66,7 @@
 #create-room-btn:hover {
   background: #0077cca1;
   border-color: #0077cca1 !important;
-}
+} */
 
 #topbar-user-list-wrapper {
   grid-area: topbar-user-list-wrapper;

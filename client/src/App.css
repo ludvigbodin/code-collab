@@ -7,8 +7,9 @@ body {
   /* background-color: #1f2227; */
   background-color: #1a1d21;
   color: #fbfbfb;
-  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, Roboto,
-    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*   font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  font-family: monospace !important;
 }
 
 h3 {
@@ -133,8 +134,11 @@ h3 {
   display: none;
 }
 
+.input-style {
+  font-family: monospace !important;
+  font-size: 18px;
+}
+
 .modal-input {
   height: 30px;
-  font-size: 18px;
-  font-family: monospace !important;
 }

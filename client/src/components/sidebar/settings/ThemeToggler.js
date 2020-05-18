@@ -21,7 +21,7 @@ function ThemeToggler() {
         inactiveLabel={"Light"}
         activeLabel={"Dark"}
       />
-      <h3 id="toggle-text"> Theme </h3>
+      <h3 className="toggle-text"> Theme </h3>
     </div>
   );
 }

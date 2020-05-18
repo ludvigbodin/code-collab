@@ -8,13 +8,13 @@ function Topbar() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const users = useSelector(state => state.room.users);
-  const { hasJoinedRoom } = user;
+  const { userRoomInfo } = user;
 
   return (
     <div id="topbar">
       <Logo />
-      {!hasJoinedRoom && <CreateRoom dispatch={dispatch} />}
-      {hasJoinedRoom && <TopbarUserList users={users} />}
+      {!userRoomInfo.validated && <CreateRoom dispatch={dispatch} />}
+      {userRoomInfo.validated && <TopbarUserList users={users} />}
     </div>
   );
 }

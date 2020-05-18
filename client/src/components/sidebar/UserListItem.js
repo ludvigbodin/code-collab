@@ -11,7 +11,7 @@ function UserListItem(props) {
 
   return (
     <div className="sidebar-item">
-      <h3 className="sidebar-item-text">{name}</h3>
+      <h3 className="sidebar-item-text"> {name}</h3>
       <div style={style} className="sidebar-user-list-item-avatar">
         {getUserNickname(name)}
       </div>

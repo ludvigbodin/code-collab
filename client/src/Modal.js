@@ -28,7 +28,7 @@ function Modal(props) {
           </div>
           <div className="modal-section" id="modal-input">
             <input
-              className="modal-input"
+              className="input-style  modal-input"
               type="text"
               value={name}
               placeholder="e.g Joe Doe"

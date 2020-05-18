@@ -19,6 +19,7 @@
   position: relative;
   text-decoration: none;
   transition: all 0.15s;
+  font-family: monospace;
 }
 
 .sidebar-user-list-item-avatar {
@@ -31,7 +32,7 @@
   font-size: 12px;
 }
 
-.badge {
+/* .badge {
   display: inline-block;
   padding: 0 3px;
   height: 13px;
@@ -44,7 +45,7 @@
   bottom: -2px;
   left: 3px;
   text-transform: uppercase;
-}
+} */
 
 /* Settings */
 .settings-item-wrapper {
@@ -54,16 +55,17 @@
   align-items: center;
 }
 
-#toggle-text {
+.toggle-text {
   align-items: center;
   display: flex;
   font-weight: normal;
   margin-left: 10px;
+  font-family: monospace;
+  font-size: 16px;
 }
 
 .execute-now-btn {
-  width: 60px !important;
-  height: 25px !important;
+  width: 70px !important;
 }
 
 /* ICONS */
@@ -86,4 +88,8 @@
   display: flex;
   height: 40px;
   align-items: center;
+}
+
+.sidebar-title {
+  font-size: 18px;
 }
