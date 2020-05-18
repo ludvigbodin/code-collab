@@ -1,14 +1,10 @@
 import React from "react";
 
-const colors = ["red", "blue", "green", "orange", "purple", "pink"];
-
 function TopbarUserListItem(props) {
-  const { name } = props.user;
-
-  Math.floor(Math.random() * 6);
+  const { name, color } = props.user;
 
   const style = {
-    backgroundColor: colors[Math.floor(Math.random() * 6)]
+    backgroundColor: color
   };
 
   return (

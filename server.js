@@ -71,3 +71,9 @@ http.listen(PORT, () => {
     console.log(updatedRooms.nModified + " has been updated");
   });
 });
+
+process.once("SIGUSR2", async () => {
+  console.log("Cleaning users..");
+  const result = await roomService.setAllUsersAsInactive();
+  console.log("Kicked " + result.nModified + " from rooms");
+});

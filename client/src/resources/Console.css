@@ -97,29 +97,5 @@
 }
 
 .user-cursor {
-  background: red;
   width: 2px !important;
-}
-
-/* .user-cursor {
-  background: red;
-  width: 2px !important;
-  height: 40px !important;
-  z-index: 10 !important;
-  bottom: 0px !important;
-}
-
-.user-cursor:after {
-  content: "" !important;
-  position: absolute !important;
-  left: 2px !important;
-  height: 20px !important;
-  bottom: 20px !important;
-  width: 50px !important;
-  background: red;
-} */
-
-.selectedRange {
-  background: #accef7 !important;
-  color: black !important;
 }

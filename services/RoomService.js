@@ -27,6 +27,10 @@ class RoomService {
     return users;
   }
 
+  async setAllUsersAsInactive() {
+    return await UserModel.updateMany({ active: true }, { active: false });
+  }
+
   async updateRoom(roomId, data) {
     return await RoomModel.findOneAndUpdate({ _id: roomId }, data, {
       new: true

@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
   room: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Room"
-  }
+  },
+  color: String
 });
 
 const UserModel = new mongoose.model("User", userSchema);

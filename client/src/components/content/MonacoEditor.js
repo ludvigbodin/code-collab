@@ -55,7 +55,7 @@ function MonacoEditor(props) {
             coord.column
           ),
           options: {
-            className: "user-cursor",
+            className: `user-cursor user-color-${user.color}`,
             inlineClassName: "selectedRange"
           }
         };

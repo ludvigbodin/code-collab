@@ -50,3 +50,28 @@ h3 {
   height: 100%;
   width: 100%;
 }
+
+/* User colors */
+.user-color-red {
+  background: red !important;
+}
+
+.user-color-blue {
+  background: blue !important;
+}
+
+.user-color-green {
+  background: green !important;
+}
+
+.user-color-orange {
+  background: orange !important;
+}
+
+.user-color-purple {
+  background: purple !important;
+}
+
+.user-color-pink {
+  background: pink !important;
+}

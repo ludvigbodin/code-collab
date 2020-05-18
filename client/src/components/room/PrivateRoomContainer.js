@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import { getConsoleItem } from "../../utils/output";
 import PrivateRoom from "./PrivateRoom";
 import Sidebar from "../sidebar/Sidebar";
 import { updateCodeInStore } from "../../actions/codeActions";
