@@ -1,6 +1,0 @@
-{
-  "database": {
-    "user": "app_db_user",
-    "password": "app_db_password"
-  }
-}
