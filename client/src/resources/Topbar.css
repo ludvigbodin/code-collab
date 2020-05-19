@@ -23,6 +23,7 @@
   grid-area: create-room-wrapper;
   padding: 5px;
   display: flex;
+  align-items: center;
 }
 
 #create-room-form {
@@ -96,4 +97,10 @@
   align-items: center;
   justify-content: center;
   border-radius: 100%;
+}
+
+.sidebar-title {
+  font-size: 18px;
+  font-family: monospace;
+  font-weight: normal;
 }

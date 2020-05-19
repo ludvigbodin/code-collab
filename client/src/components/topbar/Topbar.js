@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CreateRoom from "./CreateRoom";
 import Logo from "./Logo";
 import TopbarUserList from "./TopbarUserList";
+import RoomName from "./RoomName";
 
 function Topbar() {
   const dispatch = useDispatch();
@@ -13,7 +14,11 @@ function Topbar() {
   return (
     <div id="topbar">
       <Logo />
-      {!userRoomInfo.validated && <CreateRoom dispatch={dispatch} />}
+      {userRoomInfo.validated && userRoomInfo.roomName ? (
+        <RoomName roomName={userRoomInfo.roomName} />
+      ) : (
+        <CreateRoom dispatch={dispatch} />
+      )}
       {userRoomInfo.validated && <TopbarUserList users={users} />}
     </div>
   );
