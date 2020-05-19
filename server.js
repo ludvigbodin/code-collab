@@ -29,9 +29,6 @@ sockets.init(io);
 
 // serves the built version of your react app
 app.use(express.static(path.join(__dirname, "client/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
 
 const PORT = process.env.PORT || 5000;
 
@@ -87,6 +84,10 @@ app.get("/api/room/validate/:roomId", async (req, res) => {
 
 app.get("/api/status", (req, res) => {
   res.send({ status: "running", port: process.env.PORT });
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
 http.listen(PORT, () => {
