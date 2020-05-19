@@ -1,14 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Code Collab App",
+  "name": "Collab and have fun!",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "2code.png",
+      "src": "CODECOLLAB.png",
       "type": "image/png",
       "sizes": "192x192"
     }

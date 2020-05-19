@@ -1,5 +1,5 @@
 import openSocket from "socket.io-client";
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = window.location.hostname || "http://localhost:5000";
 const socket = openSocket(ENDPOINT);
 
 function emitJoinRoom(name, roomId) {
