@@ -1,5 +1,8 @@
 import openSocket from "socket.io-client";
-const ENDPOINT = window.location.hostname || "http://localhost:5000";
+const ENDPOINT =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://codecollabs.herokuapp.com/";
 const socket = openSocket(ENDPOINT);
 
 function emitJoinRoom(name, roomId) {

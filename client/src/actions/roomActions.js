@@ -19,7 +19,6 @@ export const createRoom = roomName => async dispatch => {
 };
 
 export const validateRoom = roomId => async dispatch => {
-  document.log(roomId);
   const url = `api/room/validate/${roomId}`;
   try {
     const json = await get(url);
@@ -29,19 +28,6 @@ export const validateRoom = roomId => async dispatch => {
     notifyError(err.message);
   }
 };
-
-/* export const joinRoom = roomId => async dispatch => {
-  document.log(roomId);
-  const url = `api/room/join/${roomId}`;
-  try {
-    const json = await get(url);
-    dispatch(setUserRoomInfo({ validated: true, roomName: json.roomName }));
-    notifyInfo("You have joined room " + json.roomName);
-  } catch (err) {
-    history.push("/");
-    notifyError(err.message);
-  }
-}; */
 
 export const setRoomData = room => dispatch => {
   dispatch({
