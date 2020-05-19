@@ -19,5 +19,7 @@ This project was created to allow coding to be more collaborative when educating
 - socket.io
 - Node.js / Express
 - React.js
-- React Redux
-- React Toastify
+- React libs like Redux, Router and Toastify
+
+# Try it out
+https://codecollabs.herokuapp.com/
