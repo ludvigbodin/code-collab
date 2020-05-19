@@ -1,4 +1,4 @@
-# Code Together
+# Code Collab
 
 This project was created to allow coding to be more collaborative when educating, interviewing and sharing own thought.
 
