@@ -52,7 +52,6 @@ function PublicRoom(props) {
     });
 
     onJoinRoom(data => {
-      document.log(data);
       setRoom(data.roomInfo);
       setUserIdToStore(data.userId);
     });
