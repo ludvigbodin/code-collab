@@ -1,6 +1,17 @@
 #sidebar {
   grid-area: sidebar;
   border-right: 1px solid #2c2f34;
+  position: relative;
+}
+
+#sidebar-footer {
+  bottom: 0;
+  position: absolute;
+  height: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebar-item {

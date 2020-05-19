@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import UserList from "./UserList";
 import RoomSettings from "./RoomSettings";
+import SidebarFooter from "./footer/SidebarFooter";
 
 function Sidebar() {
   const roomData = useSelector(state => state.room);
@@ -12,10 +13,13 @@ function Sidebar() {
   const { id, userRoomInfo } = user;
 
   return (
-    <div id="sidebar">
-      <RoomSettings dispatch={dispatch} />
-      {userRoomInfo.validated && <UserList userId={id} users={users} />}
-    </div>
+    <>
+      <div id="sidebar">
+        <RoomSettings dispatch={dispatch} />
+        {userRoomInfo.validated && <UserList userId={id} users={users} />}
+        <SidebarFooter />
+      </div>
+    </>
   );
 }
 
